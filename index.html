@@ -1,634 +1,632 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LifePath AI – Career & Growth Guide</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --primary-color: #6366f1; /* Indigo */
-      --secondary-color: #8b5cf6; /* Violet */
-      --accent-color: #10b981; /* Emerald */
-      --text-dark: #1f2937;
-      --text-light: #6b7280;
-      --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --glass-bg: rgba(255, 255, 255, 0.95);
-      --glass-border: rgba(255, 255, 255, 0.5);
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LifePath AI | Unlock Your Future</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- Variables --- */
+        :root {
+            /* Palette: Futuristic AI (Indigos, Violets, Cyans) */
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --secondary-gradient: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
+            --accent-glow: #8b5cf6;
+            
+            /* Light Mode (Clean, airy, tech) */
+            --bg-color: #f3f4f6;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --input-bg: rgba(255, 255, 255, 0.9);
+            
+            /* Animation */
+            --transition-speed: 0.4s;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        /* Dark Mode (Deep Space, Data, Holographic) */
+        body.dark {
+            --bg-color: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            --input-bg: rgba(15, 23, 42, 0.6);
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg-gradient);
-      min-height: 100vh;
-      margin: 0;
-      padding: 40px 20px;
-      color: var(--text-dark);
-      line-height: 1.6;
-    }
+        /* --- Reset & Global --- */
+        * { box-sizing: border-box; }
 
-    /* Container for centering */
-    .container {
-      max-width: 800px;
-      margin: auto;
-    }
+        body {
+            font-family: 'Outfit', sans-serif; /* Cleaner, more modern than Poppins */
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-    /* Header Styling */
-    h1 {
-      text-align: center;
-      font-size: 42px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 10px;
-      text-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      letter-spacing: -1px;
-    }
+        /* Background Ambient Orbs */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+            animation: floatOrb 10s infinite alternate;
+        }
+        .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #6366f1; }
+        .orb-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: #2dd4bf; animation-delay: -5s; }
 
-    .subtitle {
-      text-align: center;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 50px;
-      font-size: 18px;
-      font-weight: 300;
-    }
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 50px); }
+        }
 
-    /* Glassmorphism Card Style */
-    .box {
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 32px;
-      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.2);
-      margin-bottom: 30px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+        /* --- Header (Glassmorphism) --- */
+        header {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px;
+            box-shadow: var(--card-shadow);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
 
-    .box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
-    }
+        header .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    /* Decorative top bar for boxes */
-    .box::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 6px;
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    }
+        header img {
+            height: 45px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
 
-    h2 {
-      font-size: 24px;
-      color: var(--text-dark);
-      margin-top: 0;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
 
-    /* Form Elements */
-    input, select, textarea {
-      width: 100%;
-      padding: 16px;
-      margin-top: 8px;
-      margin-bottom: 20px;
-      border: 2px solid #e5e7eb;
-      border-radius: 12px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 15px;
-      background: #f9fafb;
-      transition: all 0.3s ease;
-    }
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
 
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
-    }
+        nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
 
-    /* Modern Buttons */
-    button {
-      width: 100%;
-      padding: 16px;
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-      color: white;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 16px;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-    }
+        nav a:hover, nav a.active-nav-link {
+            color: var(--text-main);
+        }
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
-      filter: brightness(1.1);
-    }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background: var(--secondary-gradient);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
 
-    button:active {
-      transform: translateY(0);
-    }
+        nav a:hover::after, nav a.active-nav-link::after {
+            width: 100%;
+        }
 
-    /* Results Area */
-    pre {
-      background: #1e293b; /* Dark code background */
-      color: #e2e8f0;
-      padding: 20px;
-      border-radius: 12px;
-      font-family: 'Poppins', sans-serif; /* Keep same font for readability */
-      font-size: 15px;
-      white-space: pre-wrap;
-      line-height: 1.7;
-      min-height: 60px;
-      border-left: 5px solid var(--accent-color);
-      box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
-    }
+        /* --- Main Content (The Glass Card) --- */
+        main {
+            width: 90%;
+            max-width: 800px;
+            padding: 50px 40px;
+            margin: 40px auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            min-height: 400px;
+            display: flex;
+            align-items: center; /* Vertically center content */
+        }
 
-    /* Feedback Text */
-    #infoMessage, #answerFeedback {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--primary-color);
-      margin-top: 5px;
-      text-align: center;
-    }
+        section {
+            width: 100%;
+            animation: fadeIn 0.6s ease forwards;
+            display: none;
+        }
+        
+        section.active { display: block; }
 
-    /* Progress Bar */
-    #scoreContainer {
-      background: #e5e7eb;
-      border-radius: 50px;
-      overflow: hidden;
-      height: 28px;
-      margin-top: 15px;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    #scoreBar {
-      background: linear-gradient(to right, #10b981, #34d399);
-      color: white;
-      text-align: center;
-      height: 100%;
-      width: 0%;
-      line-height: 28px;
-      font-size: 14px;
-      font-weight: 700;
-      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-    }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 36px;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    /* Toast Notifications */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(30, 41, 59, 0.95);
-      backdrop-filter: blur(5px);
-      color: white;
-      padding: 16px 24px;
-      border-radius: 50px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      font-size: 15px;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      animation: slideUpFade 0.4s ease forwards, fadeOut 0.4s ease 2.1s forwards;
-    }
+        h3 {
+            color: var(--text-main);
+            font-size: 20px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .toast.error { background: rgba(220, 38, 38, 0.95); }
-    .toast.success { background: rgba(16, 185, 129, 0.95); }
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
 
-    @keyframes slideUpFade {
-      from { opacity: 0; transform: translate(-50%, 20px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
-    }
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
+        /* Feature List Styling */
+        ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
 
-    /* Mobile Responsiveness */
-    @media (max-width: 600px) {
-      body { padding: 20px 15px; }
-      h1 { font-size: 32px; }
-      .box { padding: 24px; }
-    }
+        ul li {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        ul li::before {
+            content: '✦';
+            color: #a855f7;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        ul li:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+        }
 
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 14px;
-    }
-  </style>
+        /* --- Forms --- */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            background: var(--input-bg);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: var(--bg-color);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+        }
+
+        input[type="submit"] {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        input[type="submit"]:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Google Button */
+        .button-google-auth {
+            background: var(--glass-bg);
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .button-google-auth:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .or-divider {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--text-muted);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Dark Mode Toggle (Pill Switch) --- */
+        .toggle-dark {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+            margin-left: 15px;
+        }
+        
+        .toggle-dark input { opacity: 0; width: 0; height: 0; }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #cbd5e1;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        input:checked + .slider {
+            background: var(--primary-gradient);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            background: transparent;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+            nav { width: 100%; justify-content: center; flex-wrap: wrap; gap: 15px; }
+            main { padding: 30px 20px; width: 95%; margin: 20px auto; }
+            h2 { font-size: 28px; }
+            .orb-1, .orb-2 { opacity: 0.4; }
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>🚀 LifePath AI</h1>
-  <div class="subtitle">Your intelligent companion for career growth & success</div>
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
 
-  <div class="box">
-    <h2>1️⃣ Profile Setup</h2>
-    <input id="studyLevel" type="text" placeholder="Current Status (e.g., Class 12, B.Tech CS, MBA)" />
-    <select id="stream">
-      <option value="">-- Select Your Stream --</option>
-      <option value="Science">Science</option>
-      <option value="Commerce">Commerce</option>
-      <option value="Arts">Arts</option>
-      <option value="Technology">Technology</option>
-      <option value="Business">Business</option>
-      <option value="Creative Arts">Creative Arts</option>
-      <option value="Medical">Medical</option>
-      <option value="Finance">Finance</option>
-      <option value="Law">Law</option>
-      <option value="Media">Media</option>
-      <option value="Sports">Sports</option>
-    </select>
-    <input id="careerIdea" type="text" placeholder="Do you have a dream career? (Optional)" />
-    <button onclick="saveUserInfo()">Initialize Profile</button>
-    <p id="infoMessage"></p>
-  </div>
+<header>
+    <div class="logo-container">
+        <img src="lifepath-logo.jpeg" alt="LifePath Logo" />
+        <h1>LifePath AI</h1>
+    </div>
+    <nav>
+        <a href="#" id="link-about" class="active-nav-link">About</a>
+        <a href="#" id="link-login">Log In</a>
+        <a href="#" id="link-signup">Sign Up</a>
+        
+        <label class="toggle-dark">
+            <input type="checkbox" id="darkToggle">
+            <span class="slider"></span>
+        </label>
+    </nav>
+</header>
 
-  <div class="box">
-    <h2>2️⃣ AI Suggestions</h2>
-    <button onclick="showCareerSuggestions()">Generate Career Paths</button>
-    <pre id="careerSuggestions">Waiting for input...</pre>
-  </div>
+<main>
+    <section id="about" class="active">
+        <h2>Unlock Your Potential</h2>
+        <p style="text-align: center; margin-top: -20px; margin-bottom: 40px;">
+            AI-driven guidance for a career path that is uniquely yours.
+        </p>
 
-  <div class="box">
-    <h2>3️⃣ Strategic Roadmap</h2>
-    <select id="careerDropdown"></select>
-    <button onclick="selectCareer()">Lock Career Choice</button>
-    <pre id="careerRoadmap">Select a career to view your path.</pre>
-  </div>
+        <h3><strong>🚀 Our Mission</strong></h3>
+        <p>At <strong>LifePath AI</strong>, we decode the complexity of career growth. We combine advanced data analysis with personalized coaching to create a dynamic roadmap for your professional future.</p>
 
-  <div class="box">
-    <h2>4️⃣ Daily Simulation</h2>
-    <button onclick="getDailyChallenge()">Launch Simulation</button>
-    <pre id="dailyChallenge">Ready to test your skills?</pre>
-    <textarea id="challengeAnswer" rows="4" placeholder="Type your strategic solution here..."></textarea>
-    <button onclick="submitChallengeAnswer()">Evaluate Response</button>
-    <p id="answerFeedback"></p>
-    <div id="scoreContainer"> <div id="scoreBar">0%</div> </div>
-  </div>
+        <h3><strong>💡 Intelligent Features</strong></h3>
+        <ul>
+            <li><strong>AI Career Matching:</strong> Algorithms that find your best fit.</li>
+            <li><strong>Skill Gap Analysis:</strong> Know exactly what to learn next.</li>
+            <li><strong>Dynamic Roadmap:</strong> Real-time adjustments as you grow.</li>
+            <li><strong>Market Insights:</strong> Future-proof your career strategy.</li>
+        </ul>
+    </section>
 
-  <footer>&copy; 2025 LifePath AI. Engineered for your future.</footer>
-</div>
+    <section id="login" style="display:none;">
+        <h2>Welcome Back</h2>
+        <form id="loginForm" autocomplete="off">
+            <input type="email" id="loginEmail" placeholder="Email Address" required />
+            <input type="password" id="loginPassword" placeholder="Password" required />
+            <input type="submit" value="Access Dashboard" />
+        </form>
+        <div class="or-divider">Or continue with</div>
+        <button type="button" class="button-google-auth" id="googleSignInBtnLogin">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" width="20">
+            Sign in with Google
+        </button>
+    </section>
 
-<script>
-  // ==========================================
-  // LOGIC REMAINS EXACTLY THE SAME AS ORIGINAL
-  // ==========================================
+    <section id="signup" style="display:none;">
+        <h2>Start Your Journey</h2>
+        <form id="signupForm" autocomplete="off">
+            <input type="text" id="signupName" placeholder="Full Name" required />
+            <input type="email" id="signupEmail" placeholder="Email Address" required />
+            <input type="password" id="signupPassword" placeholder="Create Password (min. 6 chars)" required />
+            <input type="submit" value="Create Account" />
+        </form>
+        <div class="or-divider">Or join with</div>
+        <button type="button" class="button-google-auth" id="googleSignInBtnSignup">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" width="20">
+            Sign up with Google
+        </button>
+    </section>
+</main>
 
-  const user = {
-    studyLevel: '',
-    stream: '',
-    careerIdea: '',
-    suggestedCareers: [],
-    chosenCareer: ''
-  };
+<footer>
+    &copy; <span id="footerYear"></span> LifePath AI. Engineered for Growth.
+</footer>
 
-  const careerOptions = {
-    'Science': ['Doctor', 'Engineer', 'Data Scientist', 'Psychologist', 'Researcher', 'Environmental Scientist'],
-    'Commerce': ['Accountant', 'Marketing Manager', 'Entrepreneur', 'Economist', 'Financial Analyst', 'HR Manager'],
-    'Arts': ['Journalist', 'Graphic Designer', 'Writer', 'Social Worker', 'Historian', 'Linguist'],
-    'Technology': ['Software Engineer', 'AI Specialist', 'Data Scientist', 'Cybersecurity Expert', 'Cloud Engineer', 'UI/UX Designer'],
-    'Business': ['Entrepreneur', 'Business Analyst', 'Project Manager', 'Consultant', 'HR Manager', 'Marketing Manager'],
-    'Creative Arts': ['Artist', 'Photographer', 'Film Maker', 'Fashion Designer', 'Animator', 'Writer', 'Graphic Designer'],
-    'Medical': ['Doctor', 'Surgeon', 'Pharmacist', 'Nurse', 'Medical Researcher', 'Dietitian'],
-    'Finance': ['Financial Analyst', 'Investment Banker', 'Accountant', 'CFO', 'Actuary', 'Economist'],
-    'Law': ['Lawyer', 'Legal Advisor', 'Judge', 'Corporate Counsel', 'Paralegal'],
-    'Media': ['Journalist', 'TV Anchor', 'Content Creator', 'PR Specialist', 'Filmmaker', 'Photographer'],
-    'Sports': ['Athlete', 'Sports Coach', 'Sports Analyst', 'Fitness Trainer', 'Sports Manager']
-  };
+<script type="module">
+    // Import Firebase modular SDK functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-  const generalCareers = ['Entrepreneur', 'Graphic Designer', 'Writer', 'Social Worker', 'Psychologist', 'Project Manager', 'Content Creator', 'Consultant', 'Teacher/Educator']; 
-  
-  const careerRoadmaps = { 
-   'Doctor': `1️⃣ Clear NEET.\n2️⃣ Complete MBBS.\n3️⃣ Do Internship.\n4️⃣ Specialize via PG (MD/MS).\n5️⃣ Practice or join a hospital.`,
-    'Engineer': `1️⃣ Clear JEE/State CET/Entrance.\n2️⃣ Complete B.Tech/BE in chosen field.\n3️⃣ Build practical projects & portfolio.\n4️⃣ Intern during college.\n5️⃣ Get job or pursue M.Tech/MBA.`,
-    'Data Scientist': `1️⃣ Strong foundation in Math & Stats.\n2️⃣ Learn Python/R & SQL.\n3️⃣ Master ML algorithms & tools.\n4️⃣ Work on real-world datasets & projects.\n5️⃣ Build portfolio, consider certifications.`,
-    'Psychologist': `1️⃣ Complete BA/BSc in Psychology.\n2️⃣ Do MA/MSc in Psychology.\n3️⃣ Gain supervised practical experience.\n4️⃣ Clear licensing exams.\n5️⃣ Start practice or join institutions.`,
-    'Accountant': `1️⃣ Complete B.Com or BBA (Finance).\n2️⃣ Pursue CA, CPA, ACCA, CMA.\n3️⃣ Gain experience in audit, tax.\n4️⃣ Stay updated with financial regulations.\n5️⃣ Progress to Finance Manager, CFO.`,
-    'Marketing Manager': `1️⃣ Complete BBA/MBA in Marketing.\n2️⃣ Learn digital marketing skills.\n3️⃣ Gain experience with campaigns.\n4️⃣ Develop analytical & strategic skills.\n5️⃣ Manage marketing teams.`,
-    'Entrepreneur': `1️⃣ Identify a problem & develop a solution.\n2️⃣ Create a detailed business plan.\n3️⃣ Secure funding.\n4️⃣ Build a team & launch.\n5️⃣ Iterate, adapt, and scale.`,
-    'Economist': `1️⃣ Complete BA/BSc in Economics.\n2️⃣ Pursue MA/MSc or PhD.\n3️⃣ Develop strong analytical skills.\n4️⃣ Work in research, government, or finance.\n5️⃣ Publish papers & consult.`,
-    'Journalist': `1️⃣ Complete BA/MA in Journalism.\n2️⃣ Intern at media houses.\n3️⃣ Develop writing & reporting skills.\n4️⃣ Build a portfolio.\n5️⃣ Specialize & rise to editor roles.`,
-    'Graphic Designer': `1️⃣ Learn design principles & software.\n2️⃣ Build a strong portfolio.\n3️⃣ Pursue B.Des or specialized courses.\n4️⃣ Freelance, intern, or join agencies.\n5️⃣ Stay updated with trends.`,
-    'Writer': `1️⃣ Master language & grammar.\n2️⃣ Write consistently (blogs, articles).\n3️⃣ Seek feedback & get published.\n4️⃣ Build an online presence.\n5️⃣ Specialize & pursue larger projects.`,
-    'Social Worker': `1️⃣ Complete BSW or MSW.\n2️⃣ Gain field experience (NGOs).\n3️⃣ Develop counseling & advocacy skills.\n4️⃣ Work in NGOs, hospitals, schools.\n5️⃣ Advocate for policy changes.`,
-    'Software Engineer': `1️⃣ Learn programming languages.\n2️⃣ Understand data structures, algorithms.\n3️⃣ Build projects & contribute to open source.\n4️⃣ Get internships.\n5️⃣ Continuously learn new tech.`,
-    'AI Specialist': `1️⃣ Strong Math, CS, & Programming base.\n2️⃣ Learn ML, Deep Learning, NLP.\n3️⃣ Specialized courses or Masters/PhD.\n4️⃣ Build complex AI projects.\n5️⃣ Work in AI research or tech firms.`,
-    'Cybersecurity Expert': `1️⃣ Networking, OS, & security fundamentals.\n2️⃣ Learn threats & mitigation.\n3️⃣ Pursue certifications (CEH, CISSP).\n4️⃣ Gain experience in SOC, pen-testing.\n5️⃣ Stay updated with cyber threats.`,
-    'Business Analyst': `1️⃣ BBA/MBA or relevant degree.\n2️⃣ Develop analytical & communication skills.\n3️⃣ Learn data analysis tools (SQL, Excel).\n4️⃣ Gain experience in requirements gathering.\n5️⃣ Liaison between business & tech teams.`,
-    'Project Manager': `1️⃣ Learn PM methodologies (Agile, Waterfall).\n2️⃣ Get certified (PMP, PRINCE2).\n3️⃣ Gain experience with small projects.\n4️⃣ Develop leadership & organization skills.\n5️⃣ Manage larger, complex projects.`,
-    'Consultant': `1️⃣ Excel academically (MBA often preferred).\n2️⃣ Develop analytical & presentation skills.\n3️⃣ Gain industry or domain expertise.\n4️⃣ Intern or join consulting firms.\n5️⃣ Solve diverse client business problems.`,
-    'Artist': `1️⃣ Master techniques in chosen medium.\n2️⃣ Develop a unique artistic style & portfolio.\n3️⃣ Formal training (BFA/MFA) or self-learn.\n4️⃣ Exhibit work in galleries, art fairs.\n5️⃣ Network; potentially teach or curate.`,
-    'Photographer': `1️⃣ Learn photography fundamentals.\n2️⃣ Master photo editing software.\n3️⃣ Build a professional portfolio by niche.\n4️⃣ Invest in quality equipment.\n5️⃣ Market services online, network.`,
-    'Film Maker': `1️⃣ Learn storytelling, scriptwriting, direction.\n2️⃣ Create short films & showreel.\n3️⃣ Gain experience on film sets.\n4️⃣ Network & pitch projects.\n5️⃣ Secure funding & manage production.`,
-    'Fashion Designer': `1️⃣ Study fashion design (B.Des/diploma).\n2️⃣ Master sketching, pattern making, sewing.\n3️⃣ Build a strong, unique portfolio.\n4️⃣ Intern with designers/fashion houses.\n5️⃣ Launch label or work for brands.`,
-    'Surgeon': `1️⃣ Clear NEET (high rank).\n2️⃣ Complete MBBS.\n3️⃣ Crack PG entrance for MS.\n4️⃣ Complete MS residency; optionally MCh.\n5️⃣ Join hospitals or private practice.`,
-    'Pharmacist': `1️⃣ Complete D.Pharm or B.Pharm.\n2️⃣ Register with Pharmacy Council (license).\n3️⃣ Work in retail/hospital pharmacies.\n4️⃣ M.Pharm for specialization.\n5️⃣ Roles from dispensing to research.`,
-    'Nurse': `1️⃣ Complete BSc Nursing or GNM.\n2️⃣ Register with State Nursing Council.\n3️⃣ Work in hospitals, clinics.\n4️⃣ Specialize (MSc Nursing).\n5️⃣ Advance to supervisor/educator.`,
-    'Financial Analyst': `1️⃣ B.Com/BBA (Finance) or Economics.\n2️⃣ Strong analytical skills; financial modeling.\n3️⃣ Pursue CFA certification.\n4️⃣ Analyze data, create forecasts.\n5️⃣ Work in banks, investment firms.`,
-    'Investment Banker': `1️⃣ Top academics (MBA Finance, CA/CFA).\n2️⃣ Intern in investment banks.\n3️⃣ Skills in modeling, valuation, deals.\n4️⃣ Work on M&A, IPOs, capital raising.\n5️⃣ Build network, progress to senior roles.`,
-    'CFO': `1️⃣ Strong accounting/finance background.\n2️⃣ Extensive experience in finance roles.\n3️⃣ Progress through finance leadership.\n4️⃣ Develop strategic & leadership skills.\n5️⃣ Oversee all company financial activities.`,
-    'Lawyer': `1️⃣ Complete LLB (3 or 5 years).\n2️⃣ Pass All India Bar Examination (AIBE).\n3️⃣ Intern with law firms/advocates.\n4️⃣ Specialize in an area of law.\n5️⃣ Practice in courts or join firms.`,
-    'Legal Advisor': `1️⃣ Qualified lawyer (LLB + AIBE).\n2️⃣ Gain experience in a specific legal field.\n3️⃣ Work with corporations, government.\n4️⃣ Draft documents, provide legal opinions.\n5️⃣ Focus on preventative legal strategy.`,
-    'Judge': `1️⃣ Qualified lawyer with practice experience.\n2️⃣ Clear Judicial Services Examination.\n3️⃣ Serve as magistrate/civil judge.\n4️⃣ Promotion based on seniority/performance.\n5️⃣ Elevation to higher courts.`,
-    'Corporate Counsel': `1️⃣ Qualified lawyer (LLB + AIBE).\n2️⃣ Experience in corporate law, compliance.\n3️⃣ Join a company's legal department.\n4️⃣ Handle compliance, contracts, litigation.\n5️⃣ Progress to General Counsel.`,
-    'TV Anchor': `1️⃣ Mass Comm. or Journalism degree.\n2️⃣ Excellent communication & on-camera skills.\n3️⃣ Intern/work at TV channels.\n4️⃣ Build showreel & network.\n5️⃣ Host shows, report news.`,
-    'PR Specialist': `1️⃣ PR, Mass Comm., or Marketing degree.\n2️⃣ Strong writing & networking skills.\n3️⃣ Intern/work in PR agencies.\n4️⃣ Manage media relations, press releases.\n5️⃣ Build positive public image.`,
-    'Athlete': `1️⃣ Early training & exceptional talent.\n2️⃣ Compete at local, state, national levels.\n3️⃣ Professional coaching/sports academies.\n4️⃣ Maintain peak physical & mental fitness.\n5️⃣ Aim for international events, endorsements.`,
-    'Sports Coach': `1️⃣ Former athlete with deep sport knowledge.\n2️⃣ Obtain coaching certifications.\n3️⃣ Gain experience at various levels.\n4️⃣ Develop training & strategy skills.\n5️⃣ Continuously learn coaching techniques.`,
-    'Sports Analyst': `1️⃣ Deep knowledge of sports & statistics.\n2️⃣ Develop analytical skills, learn tools.\n3️⃣ Background in journalism or stats helpful.\n4️⃣ Provide insights for media/teams.\n5️⃣ Build analysis portfolio & network.`,
-    'Fitness Trainer': `1️⃣ Certifications (ACE, NASM).\n2️⃣ Knowledge in exercise science, nutrition.\n3️⃣ Gain experience training clients.\n4️⃣ Build client base & market services.\n5️⃣ Specialize (strength, yoga, Pilates).`,
-    'Researcher': `1️⃣ Strong academic background.\n2️⃣ Masters/PhD for advanced roles.\n3️⃣ Develop critical thinking & research skills.\n4️⃣ Conduct experiments, analyze data, publish.\n5️⃣ Work in universities, R&D.`,
-    'Historian': `1️⃣ BA/MA in History; PhD for academia.\n2️⃣ Strong research, writing, analytical skills.\n3️⃣ Specialize in a period/region/theme.\n4️⃣ Archival research, interpret sources.\n5️⃣ Teach, work in museums/archives.`,
-    'Cloud Engineer': `1️⃣ IT infrastructure, networking, OS basics.\n2️⃣ Learn cloud platforms (AWS, Azure, GCP).\n3️⃣ Obtain cloud certifications.\n4️⃣ Skills in automation, scripting, DevOps.\n5️⃣ Design, deploy, manage cloud apps.`,
-    'HR Manager': `1️⃣ HR, Business Admin, or Psychology degree.\n2️⃣ Experience in HR functions.\n3️⃣ Strong interpersonal & problem-solving skills.\n4️⃣ Understand labor laws & HR practices.\n5️⃣ Lead HR teams & strategy.`,
-    'Animator': `1️⃣ Study animation (BFA, B.Des, courses).\n2️⃣ Master animation software & principles.\n3️⃣ Skills in drawing, storytelling.\n4️⃣ Create strong portfolio/showreel.\n5️⃣ Work in studios, gaming, freelance.`,
-    'Medical Researcher': `1️⃣ MBBS or PhD in biomedical science.\n2️⃣ Strong research & experimental design skills.\n3️⃣ Conduct trials, lab research, studies.\n4️⃣ Secure grants, publish findings.\n5️⃣ Work in universities, pharma.`,
-    'Actuary': `1️⃣ Strong math/stats background.\n2️⃣ Pass rigorous professional exams.\n3️⃣ Skills in risk assessment, modeling.\n4️⃣ Work in insurance, pension funds.\n5️⃣ Analyze & manage financial risks.`,
-    'Paralegal': `1️⃣ Paralegal Studies or Law diploma/degree.\n2️⃣ Strong organizational & research skills.\n3️⃣ Assist lawyers: documents, research.\n4️⃣ Work in law firms, corporate legal.\n5️⃣ Support legal proceedings.`,
-    'UI/UX Designer': `1️⃣ Learn design principles, user research.\n2️⃣ Master design tools (Figma, Sketch, XD).\n3️⃣ Build a portfolio of UI/UX projects.\n4️⃣ Understand user psychology, accessibility.\n5️⃣ Iterate designs based on feedback.`,
-    'Environmental Scientist': `1️⃣ Environmental Science or related degree.\n2️⃣ Conduct fieldwork, collect & analyze data.\n3️⃣ Understand environmental regulations.\n4️⃣ Develop solutions for env. problems.\n5️⃣ Work for agencies, consultancies, NGOs.`,
-    'Dietitian': `1️⃣ BSc in Nutrition & Dietetics.\n2️⃣ Internship & Registered Dietitian (RD) exam.\n3️⃣ Medical nutrition therapy for patients.\n4️⃣ Create meal plans, educate on health.\n5️⃣ Work in hospitals, clinics, private practice.`,
-    'Linguist': `1️⃣ BA/MA in Linguistics.\n2️⃣ Expertise in phonetics, syntax, etc.\n3️⃣ Research language structure/use.\n4️⃣ Apply in AI, translation, education.\n5️⃣ Document endangered languages.`,
-    'Teacher/Educator': `1️⃣ Teaching degree & certification.\n2️⃣ Strong pedagogical skills.\n3️⃣ Create engaging lesson plans.\n4️⃣ Foster inclusive classroom.\n5️⃣ Assess student progress.`,
-    'Sports Manager': `1️⃣ Sports Management or Business degree.\n2️⃣ Internships in sports organizations.\n3️⃣ Skills in marketing, finance, operations.\n4️⃣ Build industry network.\n5️⃣ Manage teams, events, or athletes.`,
-    'Architect': `1️⃣ Bachelor of Architecture (B.Arch).\n2️⃣ Internships & register with Council.\n3️⃣ Master design software & codes.\n4️⃣ Develop strong design portfolio.\n5️⃣ Oversee projects (concept to construction).`,
-    'Illustrator': `1️⃣ Develop strong drawing & digital art skills.\n2️⃣ Build a portfolio in a specific style/niche.\n3️⃣ Courses in illustration or fine arts.\n4️⃣ Freelance or work for publishers, agencies.\n5️⃣ Market your work online & network.`,
-    'Editor': `1️⃣ Strong command of grammar & style.\n2️⃣ Degree in English, Journalism, or related.\n3️⃣ Experience in copyediting, proofreading.\n4️⃣ Develop an eye for detail & consistency.\n5️⃣ Work for publishers, media, or freelance.`,
-    'Musician': `1️⃣ Master chosen instrument/vocals.\n2️⃣ Study music theory & performance.\n3️⃣ Perform regularly, collaborate with others.\n4️⃣ Record music & build online presence.\n5️⃣ Understand music business basics.`,
-     'Product Designer': `1️⃣ Degree in Design, Engineering, or HCI.\n2️⃣ Skills in user research, prototyping, UI/UX.\n3️⃣ Proficiency in design & prototyping tools.\n4️⃣ Build a portfolio of product design projects.\n5️⃣ Understand manufacturing or software dev processes.`
-  };
+    // --- Firebase Configuration ---
+    const firebaseConfig = {
+      apiKey: "AIzaSyDdUyQ9HF3y2fDIyrHaPy8188rUSyIgt9s",
+      authDomain: "lifepathai-4f0d4.firebaseapp.com",
+      databaseURL: "https://lifepathai-4f0d4-default-rtdb.firebaseio.com",
+      projectId: "lifepathai-4f0d4",
+      storageBucket: "lifepathai-4f0d4.firebasestorage.app",
+      messagingSenderId: "630090635019",
+      appId: "1:630090635019:web:524958abee985e867df40e",
+      measurementId: "G-T9Y1KS2LEN"
+    };
 
-  const careerChallenges = { 
-    'Doctor': ["Handle a patient with conflicting symptoms.", "Decide priority cases in ER.", "Explain complex diagnosis in simple terms."],
-    'Engineer': ["Design a solution for a real-world problem.", "Debug complex code under a deadline.", "Work with a multidisciplinary team."],
-    'Data Scientist': ["Clean messy datasets effectively.", "Explain ML model outcomes to a non-tech client.", "Deploy a data model into production."],
-    'Psychologist': ["Help a patient through severe anxiety.", "Conduct group therapy.", "Handle ethical dilemmas in patient care."],
-    'Accountant': ["Close annual financial statements.", "Manage tax planning for a client.", "Interpret new tax amendments quickly."],
-    'Marketing Manager': ["Create a campaign for a tough product.", "Achieve sales KPIs under budget.", "Defend strategy in a board meeting."],
-    'Entrepreneur': ["Pitch to an investor.", "Recover from a product failure.", "Pivot your business model quickly."],
-    'Economist': ["Forecast market trends post-policy change.", "Present insights to policymakers.", "Simplify complex data for public."],
-    'Journalist': ["File breaking news within 10 minutes.", "Cover a sensitive political issue.", "Defend your story’s authenticity."],
-    'Graphic Designer': ["Revise a client’s brand identity.", "Design under 24-hour deadline.", "Incorporate critical feedback."],
-    'Writer': ["Overcome writer's block on a tight schedule.", "Pitch your book idea.", "Self-edit a full-length manuscript."],
-    'Social Worker': ["Handle a distressed community issue.", "Work with limited funds.", "Advocate policy changes."],
-    'Software Engineer': ["Fix a bug under production pressure.", "Optimize a slow application.", "Learn a new tech stack overnight."],
-    'AI Specialist': ["Optimize a complex ML model.", "Address AI bias issues.", "Deploy AI solution in real-time."],
-    'Cybersecurity Expert': ["Neutralize a phishing attack.", "Pen-test a server network.", "Explain a security breach to executives."],
-    'Business Analyst': ["Analyze ambiguous business data.", "Lead a requirements gathering session.", "Present findings convincingly."],
-    'Project Manager': ["Resolve a major team conflict.", "Keep a delayed project on track.", "Handle multiple projects at once."],
-    'Consultant': ["Solve a client’s unexpected problem.", "Work 14-hour days.", "Adapt fast to new industries."],
-    'Artist': ["Sell your work online.", "Organize your own gallery exhibit.", "Handle creative block periods."],
-    'Photographer': ["Manage a high-pressure wedding shoot.", "Market your work on social media.", "Handle difficult clients."],
-    'Film Maker': ["Pitch a script to a studio.", "Manage tight production timelines.", "Work with budget constraints."],
-    'Fashion Designer': ["Present collection at fashion week.", "Handle last-minute show changes.", "Build brand collaborations."],
-    'Surgeon': ["Operate under extreme pressure.", "Handle emergency cases.", "Make split-second decisions."],
-    'Pharmacist': ["Manage drug stock effectively.", "Handle confused patients.", "Explain drug interactions clearly."],
-    'Nurse': ["Work 24-hour shifts.", "Handle trauma patients.", "Maintain emotional resilience."],
-    'Financial Analyst': ["Predict market movements.", "Manage portfolio risk.", "Deliver clear reports quickly."],
-    'Investment Banker': ["Work 16-hour days.", "Handle aggressive clients.", "Lead major M&A deals."],
-    'CFO': ["Lead a financial crisis.", "Make high-stakes decisions.", "Balance growth with compliance."],
-    'Lawyer': ["Defend a tough case.", "Draft critical contracts.", "Stay ahead of legal amendments."],
-    'Legal Advisor': ["Handle corporate disputes.", "Review massive contracts overnight.", "Advise CEOs on legal risks."],
-    'Judge': ["Preside over high-stakes trials.", "Write balanced judgments.", "Stay impartial under pressure."],
-    'Corporate Counsel': ["Protect company from lawsuits.", "Draft new business policies.", "Negotiate legal settlements."],
-    'TV Anchor': ["Handle breaking live news.", "Interview a controversial figure.", "Build audience trust."],
-    'Content Creator': ["Handle viral criticism.", "Create daily content for 30 days.", "Reinvent content style regularly."],
-    'PR Specialist': ["Manage a brand crisis.", "Lead a press conference.", "Handle media controversies."],
-    'Athlete': ["Win despite injuries.", "Train during off-seasons.", "Handle defeat gracefully."],
-    'Sports Coach': ["Motivate a losing team.", "Devise last-minute strategies.", "Manage difficult players."],
-    'Sports Analyst': ["Predict match outcomes.", "Present analysis live.", "Handle unexpected game shifts."],
-    'Fitness Trainer': ["Retain long-term clients.", "Handle injuries in sessions.", "Stay updated with fitness trends."],
-    'Researcher': ["Develop a novel hypothesis for an unsolved problem.", "Secure funding for a research project against stiff competition.", "Disseminate complex research findings to a lay audience effectively."],
-    'Environmental Scientist': ["Propose a solution to mitigate local water pollution.", "Conduct an environmental impact assessment for a new development.", "Balance conservation goals with economic development needs."],
-    'HR Manager': ["Resolve a complex employee grievance issue fairly.", "Design a new employee onboarding program to improve retention.", "Develop a strategy to improve diversity and inclusion in the workplace."],
-    'Historian': ["Interpret a newly discovered primary source document.", "Write a compelling historical narrative for a public audience.", "Defend your historical interpretation against differing scholarly opinions."],
-    'Linguist': ["Document an endangered language before it disappears.", "Analyze the linguistic patterns in a large dataset of text.", "Develop a new method for teaching second language acquisition."],
-    'Cloud Engineer': ["Migrate a legacy application to a cloud-native architecture.", "Optimize cloud infrastructure costs without sacrificing performance.", "Troubleshoot a major service outage in a distributed cloud environment."],
-    'UI/UX Designer': ["Redesign a complex app to improve user engagement by 20%.", "Conduct user testing and iterate on a prototype based on feedback.", "Advocate for user-centered design principles in a product team."],
-    'Animator': ["Create a compelling 30-second animation for a new product launch.", "Animate a character to express complex emotions without dialogue.", "Collaborate with a team to meet a tight animation project deadline."],
-    'Medical Researcher': ["Design a clinical trial for a new experimental drug.", "Analyze complex biomedical data to identify disease markers.", "Write a grant proposal to fund innovative medical research."],
-    'Dietitian': ["Create a specialized meal plan for a patient with multiple dietary restrictions.", "Educate a community group on healthy eating on a budget.", "Debunk common nutrition myths with evidence-based information."],
-    'Actuary': ["Assess the financial risk of a new insurance product.", "Model the long-term financial impact of climate change on investments.", "Explain complex actuarial calculations to non-technical stakeholders."],
-    'Paralegal': ["Draft a complex legal document with meticulous accuracy under a tight deadline.", "Organize and manage evidence for a major court case.", "Conduct thorough legal research to support a lawyer's argument."],
-    'Sports Manager': ["Negotiate a multi-million dollar contract for a star athlete.", "Develop a marketing strategy to increase a sports team's fan base.", "Manage the logistics and budget for a major sporting event."],
-    'Teacher/Educator': ["Design an engaging lesson plan for a difficult curriculum topic.", "Manage a classroom with diverse learning needs effectively.", "Inspire a disengaged student to develop a passion for learning."],
-    'Architect': ["Design an innovative and sustainable building for a challenging urban site.", "Present your architectural vision convincingly to a client and review board.", "Oversee the construction phase, ensuring design integrity and resolving on-site issues."],
-    'Conservationist': ["Develop a strategy to protect an endangered species and its habitat.", "Secure community support and funding for a local conservation project.", "Balance ecological preservation with the needs of local human populations."],
-    'Illustrator': ["Create a series of illustrations for a children's book that captures its unique tone.", "Develop a distinctive visual style for a new brand identity.", "Meet a tight deadline for editorial illustrations for a magazine."],
-    'Editor': ["Edit a complex manuscript to improve clarity, coherence, and impact while preserving the author's voice.", "Manage the editorial workflow for a publication, ensuring quality and timeliness.", "Provide constructive feedback to writers that helps them improve their craft."],
-    'Musician': ["Compose and perform an original piece that resonates with a diverse audience.", "Master a challenging new instrument or musical technique.", "Navigate the business side of music, including promotion and bookings."],
-    'Music Producer': ["Transform a raw demo into a polished, radio-ready track.", "Define the unique sound for an emerging artist's album.", "Manage studio time and diverse artistic personalities to complete a project on budget."],
-    'Sound Engineer': ["Achieve the perfect live sound mix for a band in a challenging venue.", "Design and implement the sound effects for a feature film or video game.", "Troubleshoot complex audio system failures under pressure."],
-    'DJ': ["Curate and mix a seamless set that keeps a diverse crowd energized for hours.", "Adapt your music selection in real-time based on the audience's reaction.", "Build a unique brand and following as a DJ in a competitive market."],
-    'Actor': ["Deliver a compelling and emotionally resonant performance for a challenging role.", "Master a difficult accent or physical skill required for a part.", "Navigate the audition process and handle rejection with resilience."],
-    'Dancer': ["Learn and perfect complex choreography for a lead role in a production.", "Convey a story or emotion purely through movement and expression.", "Maintain peak physical condition and prevent injuries throughout a demanding performance schedule."],
-    'Performer': ["Create and deliver a captivating solo show that engages the audience from start to finish.", "Improvise effectively when unexpected issues arise during a live performance.", "Adapt your performance style for different venues and audiences."],
-    'Choreographer': ["Create an original and innovative dance piece for a company of dancers.", "Effectively teach and communicate your choreographic vision to performers.", "Secure funding and manage the production aspects of a new dance work."],
-    'Textile Designer': ["Develop a new and innovative textile pattern that is both aesthetically pleasing and manufacturable.", "Select sustainable materials and processes for a new textile collection.", "Collaborate with fashion designers to create custom textiles for their garments."],
-    'Stylist': ["Create a unique and impactful fashion look for a celebrity for a red carpet event.", "Develop the visual concept and style the wardrobe for a major advertising campaign.", "Advise individual clients on how to build a wardrobe that reflects their personal style and needs."],
-    'Video Editor': ["Craft a compelling narrative from hours of raw footage for a documentary.", "Edit a fast-paced music video with precise timing and visual rhythm.", "Incorporate complex visual effects and color grading to enhance a video project."],
-    'Cinematographer': ["Develop a unique visual style that enhances the storytelling of a film script.", "Effectively light and shoot a challenging scene with limited resources.", "Collaborate with the director to translate their vision into compelling imagery."],
-    'Photo Editor': ["Curate and select the most impactful images from a large photoshoot.", "Retouch and enhance photographs to a high professional standard while maintaining authenticity.", "Manage a high volume of image editing work under tight deadlines for a publication."],
-    'Product Designer': ["Identify an unmet user need and design an innovative product solution.", "Create and test interactive prototypes to refine a product's usability and desirability.", "Collaborate with engineers and marketers to bring a product from concept to launch."],
-    'Venture Capitalist': ["Identify a startup with high growth potential from hundreds of pitches.", "Conduct due diligence and negotiate investment terms with entrepreneurs.", "Provide strategic guidance to portfolio companies to help them succeed."],
-    'CEO': ["Develop and communicate a compelling long-term vision for the company.", "Lead an organization through a period of significant change or crisis.", "Make high-stakes decisions that impact the company's future and its employees."],
-    'Strategist': ["Analyze market trends and competitive landscape to identify strategic opportunities.", "Develop a comprehensive business strategy to achieve long-term growth.", "Advise senior leadership on critical strategic choices and their implications."],
-    'Brand Manager': ["Develop and execute a marketing strategy to build a strong brand identity and increase market share.", "Manage a brand's reputation through crises and evolving consumer sentiment.", "Analyze brand performance metrics and adapt strategies accordingly."],
-    'SEO Specialist': ["Develop and implement an SEO strategy to significantly increase organic website traffic.", "Conduct in-depth keyword research and competitor analysis to identify opportunities.", "Adapt to search engine algorithm changes to maintain and improve rankings."],
-    'Stockbroker': ["Analyze market conditions and company performance to advise clients on stock investments.", "Execute trades accurately and efficiently in a fast-paced environment.", "Build and maintain strong relationships with clients based on trust and performance."],
-    'Motivational Speaker': ["Craft and deliver a powerful speech that inspires and motivates a large audience.", "Develop a unique personal brand and message that resonates with people.", "Handle challenging questions from the audience with grace and insight."],
-    'Sales Manager': ["Lead and motivate a sales team to consistently exceed targets.", "Develop and implement an effective sales strategy for a new product or market.", "Negotiate and close high-value deals with key clients."],
-    'Real Estate Agent': ["Successfully market and sell a property in a competitive market.", "Negotiate the best possible deal for a client, whether buying or selling.", "Build a strong network of clients and contacts through excellent service."],
-    'Operations Manager': ["Optimize a complex operational process to improve efficiency and reduce costs.", "Manage a large team to ensure smooth day-to-day operations.", "Develop and implement a contingency plan for potential operational disruptions."],
-    'Therapist': ["Help a client navigate complex emotional trauma and develop coping mechanisms.", "Maintain strong ethical boundaries while providing empathetic support.", "Facilitate a group therapy session addressing sensitive issues."],
-    'Counselor': ["Guide a student through academic and personal challenges to achieve their goals.", "Provide crisis intervention and support for an individual in acute distress.", "Develop a wellness program for an organization to support employee mental health."],
-    'Professor': ["Design and teach an engaging university course that inspires critical thinking.", "Conduct original research and publish influential scholarly work in your field.", "Mentor students and guide them in their academic and career development."],
-    'Instructional Designer': ["Create an effective and engaging e-learning module for adult learners.", "Apply learning theories to design training materials that achieve specific outcomes.", "Evaluate the effectiveness of training programs and make data-driven improvements."],
-    'Corporate Trainer': ["Deliver dynamic and impactful training sessions to corporate employees.", "Develop customized training programs to address specific organizational needs.", "Assess training effectiveness and demonstrate ROI to stakeholders."],
-    'NGO Manager': ["Develop a sustainable fundraising strategy for a non-profit organization.", "Lead a team to implement impactful community development projects with limited resources.", "Advocate for policy changes to address the root causes of social issues."],
-    'Community Organizer': ["Mobilize community members to take collective action on an important local issue.", "Build coalitions and partnerships with diverse stakeholders to achieve common goals.", "Develop and lead a grassroots campaign to effect social change."],
-    'Activist': ["Raise public awareness and galvanize support for a critical social or environmental cause.", "Organize a peaceful protest or direct action campaign to challenge injustice.", "Navigate legal and political challenges while advocating for systemic change."],
-    'Archaeologist': ["Lead an archaeological excavation and meticulously document all findings.", "Analyze artifacts to reconstruct past human behavior and societies.", "Preserve and protect a significant archaeological site from threats."],
-    'Museum Curator': ["Develop and curate an engaging and informative museum exhibition.", "Research and acquire new artifacts for the museum's collection.", "Write compelling interpretive text for exhibits that connects with diverse audiences."],
-    'Archivist': ["Preserve and organize historical records and documents for future generations.", "Develop a digitization strategy to improve access to archival collections.", "Assist researchers in navigating and utilizing archival materials effectively."],
-    'Philosopher': ["Develop a coherent philosophical argument to address a complex ethical or metaphysical question.", "Critically analyze and engage with the works of other philosophers.", "Teach philosophical concepts in a way that is accessible and stimulating to students."],
-    'Ethics Officer': ["Develop and implement an ethics and compliance program for an organization.", "Investigate and resolve allegations of unethical conduct.", "Provide guidance to employees on navigating complex ethical dilemmas."],
-    'Policy Advisor': ["Analyze complex policy issues and provide evidence-based recommendations to government officials.", "Draft clear and effective policy documents and legislation.", "Navigate the political landscape to advocate for specific policy outcomes."],
-    'Translator': ["Accurately translate complex technical or literary texts while preserving nuance and style.", "Provide simultaneous interpretation for high-level international meetings.", "Specialize in a specific domain (e.g., legal, medical) requiring expert terminology."],
-    'Interpreter': ["Provide accurate real-time oral interpretation between two languages in a high-pressure setting.", "Facilitate clear communication in critical situations like medical consultations or legal proceedings.", "Master cultural nuances to ensure effective cross-cultural communication."],
-    'Speech Therapist': ["Diagnose and treat a child's complex speech or language disorder.", "Help an adult recover communication abilities after a stroke or brain injury.", "Develop and implement individualized therapy plans based on patient needs."],
-    'Media Analyst': ["Analyze media coverage to assess public perception of a brand or issue.", "Track and interpret trends in media consumption and digital engagement.", "Provide strategic recommendations based on media intelligence to an organization."],
-    'Reporter': ["Investigate and uncover a significant news story through diligent research and interviews.", "Write a compelling and accurate news report under a tight deadline.", "Protect sources and navigate ethical challenges in pursuit of the truth."],
-    'Hospital Administrator': ["Optimize hospital operations to improve patient care quality and efficiency.", "Manage a hospital's budget and financial performance effectively.", "Lead a diverse team of healthcare professionals and support staff."],
-    'Dentist': ["Perform a complex dental procedure with precision and care.", "Diagnose and treat a patient's urgent dental emergency.", "Build trust and alleviate anxiety for patients with dental phobias."],
-    'Nutritionist': ["Develop a personalized nutrition plan for an athlete to optimize performance.", "Educate a community on the link between diet and chronic disease prevention.", "Analyze food products and provide guidance on healthy dietary choices."],
-    'Wellness Coach': ["Help a client identify and achieve their personal health and wellness goals.", "Develop a holistic wellness program incorporating fitness, nutrition, and stress management.", "Motivate and support clients through lifestyle changes and setbacks."],
-    'Food Scientist': ["Develop an innovative new food product that meets consumer demand and safety standards.", "Improve the nutritional value or shelf life of an existing food product.", "Troubleshoot and solve a quality control issue in food manufacturing."],
-    'Physiotherapist': ["Develop a rehabilitation plan for a patient recovering from a serious injury or surgery.", "Use manual therapy techniques to alleviate a patient's chronic pain.", "Educate patients on injury prevention and self-management strategies."],
-    'Adventure Guide': ["Safely lead a group on a challenging trek or expedition in a remote wilderness area.", "Provide first aid and manage emergencies in an outdoor setting.", "Share knowledge of local flora, fauna, and geography to enhance the group's experience."],
-    'Park Ranger': ["Protect natural resources and enforce park regulations within a designated area.", "Provide educational programs and interpretive talks to park visitors.", "Respond to emergencies, including search and rescue operations or wildlife encounters."],
-    'Geologist': ["Conduct fieldwork to map rock formations and identify mineral or energy resources.", "Analyze geological data to assess risks such as earthquakes or landslides.", "Advise on geological factors for construction or environmental projects."],
-    'Forester': ["Develop a sustainable forest management plan that balances timber production with ecological health.", "Monitor forest health and implement strategies to combat disease or pests.", "Oversee reforestation efforts and manage forest fire prevention."],
-    'Chef': ["Create an innovative and critically acclaimed menu for a fine dining restaurant.", "Lead a busy kitchen team to deliver high-quality food consistently under pressure.", "Manage food costs and inventory effectively while maintaining culinary excellence."],
-    'Culinary Artist': ["Design and prepare visually stunning and delicious dishes for a special event.", "Experiment with new ingredients and techniques to push culinary boundaries.", "Teach a cooking class, inspiring others to explore their creativity in the kitchen."],
-    'Food Critic': ["Write an insightful and unbiased review of a new restaurant or culinary trend.", "Evaluate a dish based on taste, presentation, creativity, and technique.", "Maintain anonymity and objectivity while conducting restaurant reviews."],
-    'Caterer': ["Plan and execute the food and beverage service for a large-scale event flawlessly.", "Develop a diverse menu that meets various dietary needs and client preferences.", "Manage logistics, staffing, and a budget for multiple catering jobs simultaneously."],
-    'Pastry Chef': ["Create intricate and delicious pastries, desserts, and breads for a high-end bakery or restaurant.", "Develop new and seasonal dessert menus that delight customers.", "Manage the production and quality control of a busy pastry kitchen."],
-    'Baker': ["Master the art and science of baking a wide variety of breads and baked goods.", "Develop a signature recipe that becomes a local favorite.", "Manage a small bakery business, including production, sales, and customer service."],
-    'Travel Agent': ["Design a complex, multi-destination itinerary that perfectly matches a client's dream vacation.", "Find the best travel deals and navigate complex booking systems efficiently.", "Provide exceptional customer service and troubleshoot travel disruptions for clients."],
-    'Travel Blogger': ["Create engaging and informative content (articles, photos, videos) about your travel experiences.", "Build a loyal online audience and monetize your travel blog effectively.", "Partner with tourism brands while maintaining authenticity and editorial independence."],
-    'Tour Guide': ["Lead an engaging and informative tour of a historical site or city, bringing its stories to life.", "Manage a diverse group of tourists and adapt your tour to their interests and needs.", "Handle unexpected situations or difficult questions from tourists professionally."],
-    'Cultural Anthropologist': ["Conduct immersive ethnographic fieldwork in a different cultural setting.", "Analyze cultural practices and belief systems to understand human diversity.", "Communicate your research findings in a way that promotes cross-cultural understanding."],
-    'Flight Attendant': ["Ensure passenger safety and comfort during a flight, including emergency situations.", "Provide excellent customer service to a diverse range of passengers in a confined space.", "Work effectively as part of a cabin crew team, often across different time zones."],
-    'Hotel Manager': ["Oversee all operations of a hotel to ensure guest satisfaction and profitability.", "Lead and motivate a large team of hotel staff across different departments.", "Handle guest complaints and resolve issues promptly and professionally."],
-    'Artisan': ["Create unique, high-quality handcrafted items using specialized skills and traditional techniques.", "Develop a distinctive artistic style that sets your work apart.", "Market and sell your artisanal products through fairs, online platforms, or a personal studio."],
-    'Craftsperson': ["Master a specific craft (e.g., woodworking, pottery, metalworking) to produce functional and beautiful objects.", "Design and create custom pieces based on client specifications.", "Manage a small craft business, including sourcing materials, production, and sales."],
-    'Jewelry Maker': ["Design and create unique pieces of jewelry using precious metals, gemstones, or other materials.", "Master intricate jewelry-making techniques such as soldering, stone setting, and polishing.", "Develop a brand and market your jewelry collection to target customers."],
-    'Carpenter': ["Construct, install, or repair wooden structures and fittings with precision and skill.", "Interpret blueprints and technical drawings to execute complex carpentry projects.", "Select appropriate wood types and materials for different applications."],
-    'Designer': ["Conceptualize and create visually appealing and functional designs for various products or media.", "Utilize design software and tools effectively to bring ideas to life.", "Collaborate with clients or teams to meet design objectives and iterate on feedback."]
-  };
+    // Initialize Firebase services
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
 
-  function saveUserInfo() {
-    const study = document.getElementById('studyLevel').value.trim();
-    const stream = document.getElementById('stream').value;
-    const careerIdea = document.getElementById('careerIdea').value.trim();
-    if (!study || !stream) return showToast('Please fill your study level and stream.', 'error');
-    user.studyLevel = study;
-    user.stream = stream;
-    user.careerIdea = careerIdea;
-    document.getElementById('infoMessage').textContent =
-      `✅ Profile Active: ${stream} | ${study}`;
-    showToast('Profile initialized successfully!', 'success');
-  }
+    // --- DOM Elements ---
+    const aboutSection = document.getElementById('about');
+    const loginSection = document.getElementById('login');
+    const signupSection = document.getElementById('signup');
+    const navLinkAbout = document.getElementById('link-about');
+    const navLinkLogin = document.getElementById('link-login');
+    const navLinkSignup = document.getElementById('link-signup');
+    const allNavLinks = [navLinkAbout, navLinkLogin, navLinkSignup];
 
-  function showCareerSuggestions() {
-    if (!user.studyLevel || !user.stream) return showToast('Initialize your profile first.', 'error');
-    
-    let baseCareers = careerOptions[user.stream] || [];
-    let combinedCareers = [...new Set([...baseCareers, ...generalCareers])];
+    // Navigation Logic
+    function showSection(sectionToShow, activeNavLink) {
+        [aboutSection, loginSection, signupSection].forEach(s => {
+            if (s) {
+                s.style.display = 'none';
+                s.classList.remove('active');
+            }
+        });
+        allNavLinks.forEach(link => {
+            if (link) link.classList.remove('active-nav-link');
+        });
 
-    if (user.careerIdea) {
-      const ci = user.careerIdea;
-      const ciLower = ci.toLowerCase();
-
-      let found = combinedCareers.some(c => c.toLowerCase() === ciLower);
-      
-      if(!found) {
-          combinedCareers.unshift(ci);
-      } else {
-          combinedCareers = combinedCareers.filter(c => c.toLowerCase() !== ciLower);
-          combinedCareers.unshift(ci);
-      }
+        if (sectionToShow) {
+            sectionToShow.style.display = 'block';
+            void sectionToShow.offsetWidth; // Trigger reflow
+            sectionToShow.classList.add('active');
+        }
+        if (activeNavLink) {
+            activeNavLink.classList.add('active-nav-link');
+        }
     }
-    
-    const numberOfSuggestions = Math.min(combinedCareers.length, 5);
-    user.suggestedCareers = combinedCareers.slice(0, numberOfSuggestions);
 
+    if (navLinkAbout) navLinkAbout.addEventListener('click', (e) => { e.preventDefault(); showSection(aboutSection, navLinkAbout); });
+    if (navLinkLogin) navLinkLogin.addEventListener('click', (e) => { e.preventDefault(); showSection(loginSection, navLinkLogin); });
+    if (navLinkSignup) navLinkSignup.addEventListener('click', (e) => { e.preventDefault(); showSection(signupSection, navLinkSignup); });
 
-    if (user.suggestedCareers.length === 0) {
-        user.suggestedCareers = generalCareers.slice(0,3);
-         document.getElementById('careerSuggestions').textContent =
-        'Analyzing... Here are high-potential paths:\n- ' + user.suggestedCareers.join('\n- ');
+    // --- Dark Mode Logic ---
+    const darkToggle = document.getElementById('darkToggle');
+
+    function applyDarkMode(isDark) {
+        if (isDark) {
+            document.body.classList.add('dark');
+            if (darkToggle) darkToggle.checked = true;
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            document.body.classList.remove('dark');
+            if (darkToggle) darkToggle.checked = false;
+            localStorage.removeItem('darkMode');
+        }
+    }
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedMode = localStorage.getItem('darkMode');
+
+    if (storedMode === 'enabled') {
+        applyDarkMode(true);
+    } else if (storedMode === 'disabled') {
+        applyDarkMode(false);
     } else {
-        document.getElementById('careerSuggestions').textContent =
-        '✨ AI Recommendation Complete. Top Matches:\n- ' + user.suggestedCareers.join('\n- ');
+        applyDarkMode(true); // Default to Dark mode for this tech aesthetic
     }
 
-    let dropdownHTML = '<option value="">-- Select Target Career --</option>';
-    user.suggestedCareers.forEach(career => {
-      dropdownHTML += `<option value="${career}">${career}</option>`;
-    });
-    document.getElementById('careerDropdown').innerHTML = dropdownHTML;
-    if (user.suggestedCareers.length > 0) {
-        showToast('Career paths generated!', 'success');
+    if (darkToggle) {
+        darkToggle.addEventListener('change', () => {
+            applyDarkMode(darkToggle.checked);
+        });
     }
-  }
 
-  function selectCareer() {
-    const choice = document.getElementById('careerDropdown').value;
-    if (!choice) return showToast('Select a career first.', 'error');
-    user.chosenCareer = choice;
-    document.getElementById('careerRoadmap').textContent = careerRoadmaps[choice] || 'Strategy loading... researching specific path for "' + choice + '".';
-    showToast(`Target set: ${choice}`, 'success');
-    document.getElementById('dailyChallenge').textContent = 'Ready for simulation?';
-    document.getElementById('challengeAnswer').value = '';
-    document.getElementById('answerFeedback').textContent = '';
-    document.getElementById('scoreBar').style.width = '0%';
-    document.getElementById('scoreBar').textContent = '0%';
-  }
-
-  function getDailyChallenge() {
-    if (!user.chosenCareer) return showToast('Select a career first.', 'error');
-    const list = careerChallenges[user.chosenCareer];
-    if (!list || list.length === 0) {
-        document.getElementById('dailyChallenge').textContent = 'Simulation unavailable for "' + user.chosenCareer + '".';
-        return;
+    // --- Auth Functions ---
+    async function saveUserToRealtimeDatabase(uid, name, email) {
+        const userRef = ref(database, 'users/' + uid);
+        const snapshot = await get(userRef);
+        if (!snapshot.exists()) {
+            await set(userRef, { name: name, email: email, createdAt: Date.now() });
+        }
     }
-    const challenge = list[Math.floor(Math.random() * list.length)];
-    const challengeElem = document.getElementById('dailyChallenge');
-    challengeElem.style.opacity = 0;
-    setTimeout(() => {
-      challengeElem.textContent = "🔥 SCENARIO: " + challenge;
-      challengeElem.style.opacity = 1;
-    }, 250);
 
-    document.getElementById('challengeAnswer').value = '';
-    document.getElementById('answerFeedback').textContent = '';
-    document.getElementById('scoreBar').style.width = '0%';
-    document.getElementById('scoreBar').textContent = '0%';
-  }
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim().toLowerCase();
+            const password = document.getElementById('signupPassword').value;
 
-  function submitChallengeAnswer() {
-    const answer = document.getElementById('challengeAnswer').value.trim();
-    if (!answer) return showToast('Input your strategy first.', 'error');
-    let score = 0;
-    const ansLower = answer.toLowerCase();
-    if (answer.length > 50) score += 40;
-    if (ansLower.includes('plan') || ansLower.includes('strategy') || ansLower.includes('approach')) score += 30;
-    if (ansLower.includes('team') || ansLower.includes('solution') || ansLower.includes('collaborate')) score += 20;
-    if (ansLower.includes('risk') || ansLower.includes('improve') || ansLower.includes('analyze')) score += 10;
-    if (score > 100) score = 100;
-    let msg = '';
-    if (score >= 80) msg = `🌟 Outstanding Strategy! Efficiency Rating: ${score}%`;
-    else if (score >= 50) msg = `👍 Solid Approach. Efficiency Rating: ${score}%. Refine details for higher impact.`;
-    else msg = `✨ Analysis Complete. Rating: ${score}%. Recommendation: Add more strategic depth.`;
-    document.getElementById('answerFeedback').textContent = msg;
-    document.getElementById('scoreBar').style.width = score + '%';
-    document.getElementById('scoreBar').textContent = score + '%';
-  }
+            if (!name || !email || !password) { alert('All fields required.'); return; }
+            if (password.length < 6) { alert('Password must be 6+ chars.'); return; }
 
-  function showToast(message, type = 'info') {
-    const toast = document.createElement('div');
-    toast.className = 'toast ' + type;
-    toast.innerHTML = type === 'success' ? '✅ ' + message : '⚠️ ' + message;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 2500);
-  }
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                await saveUserToRealtimeDatabase(userCredential.user.uid, name, email);
+                alert('Account created! Please log in.');
+                this.reset();
+                showSection(loginSection, navLinkLogin);
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+    }
+
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                const userRef = ref(database, 'users/' + user.uid);
+                const userSnapshot = await get(userRef);
+                const userName = userSnapshot.exists() ? userSnapshot.val().name : user.email;
+
+                sessionStorage.setItem('lifePathLoggedInUser', JSON.stringify({name: userName, email: user.email, uid: user.uid}));
+                window.location.href = 'homepage.html';
+            } catch (error) {
+                alert('Login failed: ' + error.message);
+            }
+        });
+    }
+
+    const googleSignInBtnLogin = document.getElementById('googleSignInBtnLogin');
+    const googleSignInBtnSignup = document.getElementById('googleSignInBtnSignup');
+
+    async function handleGoogleAuth() {
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+            await saveUserToRealtimeDatabase(user.uid, user.displayName, user.email);
+            sessionStorage.setItem('lifePathLoggedInUser', JSON.stringify({name: user.displayName, email: user.email, uid: user.uid}));
+            window.location.href = 'homepage.html';
+        } catch (error) {
+            alert('Google Auth Failed: ' + error.message);
+        }
+    }
+
+    if (googleSignInBtnLogin) googleSignInBtnLogin.addEventListener('click', handleGoogleAuth);
+    if (googleSignInBtnSignup) googleSignInBtnSignup.addEventListener('click', handleGoogleAuth);
+
+    // Initial Load
+    showSection(aboutSection, navLinkAbout);
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
 </script>
-
 </body>
 </html>
