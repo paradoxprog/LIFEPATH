@@ -2,247 +2,407 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>LifePath AI – Interests Section</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifePath AI – Discovery Engine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
-    /* Styles relevant to this section from main.html */
-    * {
-      box-sizing: border-box;
+    :root {
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      --secondary-gradient: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
+      --bg-color: #0f172a;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+      --chip-bg: rgba(255, 255, 255, 0.05);
+      --chip-hover: rgba(255, 255, 255, 0.1);
+      --chip-active: #6366f1;
     }
+
+    * { box-sizing: border-box; }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f3f4f6; /* Consistent background */
+      background-color: var(--bg-color);
+      color: var(--text-main);
       margin: 0;
-      padding: 20px; /* Padding for standalone view */
-      max-width: 960px; /* Consistent max-width */
-      margin: auto; /* Center content */
-      color: #2c3e50;
+      padding: 40px 20px;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
+
+    /* Ambient Background Effects */
+    .ambient-orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: -1;
+        opacity: 0.5;
+        animation: floatOrb 10s infinite alternate;
+    }
+    .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #6366f1; }
+    .orb-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: #2dd4bf; animation-delay: -5s; }
+
+    @keyframes floatOrb {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(30px, 50px); }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    /* Header */
     h1 {
-      text-align: center; /* */
-      font-size: 32px; /* */
-      color: #1f2937; /* */
-      margin-bottom: 20px; /* */
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
     }
+
+    .subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-size: 18px;
+    }
+
+    /* Glass Card */
+    .box {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--card-shadow);
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     h2 {
-      font-size: 22px;
-      color: #111827;
-      margin-bottom: 12px;
-    }
-    h4 {
-      font-size: 17px;
-      color: #1f2937;
-      margin-bottom: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 28px;
+      color: var(--text-main);
+      margin-bottom: 15px;
       margin-top: 0;
     }
-    .box {
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-      margin-bottom: 30px;
-      transition: transform 0.2s ease;
-    }
-    .box:hover {
-      transform: translateY(-3px);
-    }
-    input[type="text"], input[type="checkbox"], button {
-      font-size: 16px; /* Simplified from original for brevity */
-    }
-    input[type="text"] {
-        width: 100%;
-        padding: 12px;
-        margin-top: 10px;
-        margin-bottom: 16px;
-        border: 1px solid #d1d5db;
-        border-radius: 10px;
-    }
-    input[type="text"]:focus {
-        outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-    }
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-    button:hover {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      transform: translateY(-1px);
-    }
-    pre {
-      background: #f9fafb;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #e5e7eb;
-      font-size: 15px;
-      white-space: pre-wrap;
-      min-height: 60px;
-    }
-    #dynamicInterestSuggestions {
-      background: #eef2ff;
-      border-left: 4px solid #4f46e5;
-      color: #3730a3;
-      min-height: 80px;
-      padding: 12px;
-    }
-    #interestsMessage {
-      font-size: 16px;
-      color: #374151;
-      margin-top: -8px;
-      margin-bottom: 10px;
-    }
+
     .instructions {
+      color: var(--text-muted);
+      margin-bottom: 30px;
       font-size: 15px;
-      color: #555;
-      margin-bottom: 20px;
-      margin-top: -5px;
     }
+
+    /* Interest Categories */
     .interest-category {
-      margin-bottom: 25px;
+      margin-bottom: 35px;
     }
+
     .interest-category h3 {
+      font-family: 'Outfit', sans-serif;
       font-size: 18px;
-      font-weight: 600;
-      color: #2563eb;
-      margin-bottom: 12px;
-      border-bottom: 2px solid #e5e7eb;
-      padding-bottom: 6px;
+      color: #a5b4fc;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 8px;
     }
-    #interestsContainer label {
+
+    /* Chip/Tag Grid System */
+    .chip-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Hiding the default checkbox */
+    .chip-container input[type="checkbox"] {
+      display: none;
+    }
+
+    /* The Chip Label */
+    .chip-container label {
+      display: inline-block;
+      background: var(--chip-bg);
+      border: 1px solid var(--glass-border);
+      padding: 10px 18px;
+      border-radius: 50px;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+    }
+
+    .chip-container label:hover {
+      background: var(--chip-hover);
+      transform: translateY(-2px);
+      color: var(--text-main);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    /* Active State for Chips */
+    .chip-container input[type="checkbox"]:checked + label {
+      background: var(--primary-gradient);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Other Interest Input */
+    .other-interest-group {
+      margin-top: 20px;
+    }
+    
+    label[for="otherInterests"] {
       display: block;
       margin-bottom: 10px;
-      font-weight: 400;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #6366f1;
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+    }
+
+    /* AI Terminal (Results Box) */
+    #dynamicSuggestionsBox {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Decorative line for terminal */
+    #dynamicSuggestionsBox::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--secondary-gradient);
+    }
+
+    h4 {
+      margin-top: 0;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #dynamicInterestSuggestions {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-family: 'Courier New', monospace; /* Tech feel */
       font-size: 15px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      min-height: 40px;
+      padding: 0;
+      margin: 10px 0 0 0;
+    }
+
+    /* Save Button */
+    button {
+      width: 100%;
+      padding: 18px;
+      margin-top: 30px;
+      background: var(--secondary-gradient);
+      color: white;
+      border: none;
+      border-radius: 12px;
       cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
     }
-    #interestsContainer input[type="checkbox"] {
-      width: auto;
-      margin-right: 10px;
-      vertical-align: middle;
-      margin-top: -2px;
-      margin-bottom: 0;
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+      filter: brightness(1.1);
     }
-    #otherInterests {
-      margin-top: 5px;
+
+    #interestsMessage {
+      text-align: center;
+      margin-top: 15px;
+      min-height: 24px;
+      font-weight: 500;
     }
-    label[for="otherInterests"] {
-      font-weight: 600;
-      font-size: 15px;
-      color: #111827;
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: var(--text-muted);
+      font-size: 14px;
     }
-    .toast { /* Common toast styles */
-      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-      background: #2c3e50; color: white; padding: 14px 20px; border-radius: 10px;
-      box-shadow: 0 5px 12px rgba(0,0,0,0.2); z-index: 1000; font-size: 15px;
-      opacity: 0.95; animation: fadeinout 2.5s forwards;
-    }
-    .toast.error { background: #e11d48; }
-    .toast.success { background: #16a34a; }
-    @keyframes fadeinout {
-      0% {opacity: 0;} 10% {opacity: 0.95;}
-      90% {opacity: 0.95;} 100% {opacity: 0;}
-    }
-      @media (max-width: 600px) {
-      h2, h4 { font-size: 18px; }
-      .interest-category h3 { font-size: 17px; }
-      #interestsContainer label, label[for="otherInterests"] { font-size: 14px;}
-      input, select, textarea, button { font-size: 15px; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .box { padding: 25px; }
+      h1 { font-size: 32px; }
+      .chip-container label { padding: 8px 14px; font-size: 13px; }
     }
   </style>
 </head>
 <body>
-<h1>LifePath AI – Career & Growth Guide</h1>
 
-<div class="box">
-  <h2>Find Your Interests</h2>
-  <p class="instructions">Select the areas that genuinely excite you. Careers related to your selections will appear below as you choose.</p>
-  <div id="interestsContainer">
-    <div class="interest-category">
-      <h3>🧪 STEM & Analytics</h3>
-      <label><input type="checkbox" name="interest" value="Solving Complex Problems"> Solving Complex Problems</label>
-      <label><input type="checkbox" name="interest" value="Mathematics & Statistics"> Mathematics & Statistics</label>
-      <label><input type="checkbox" name="interest" value="Coding & Software Development"> Coding & Software Development</label>
-      <label><input type="checkbox" name="interest" value="Scientific Research & Experiments"> Scientific Research & Experiments</label>
-      <label><input type="checkbox" name="interest" value="Analyzing Data & Trends"> Analyzing Data & Trends</label>
-      <label><input type="checkbox" name="interest" value="Emerging Technologies (AI, Blockchain)"> Emerging Technologies (AI, Blockchain)</label>
-      <label><input type="checkbox" name="interest" value="Engineering & Building"> Engineering & Building</label>
-      <label><input type="checkbox" name="interest" value="Environmental Science & Sustainability"> Environmental Science & Sustainability</label>
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+
+<div class="container">
+  <h1>LifePath AI</h1>
+  <div class="subtitle">Interest Discovery Engine</div>
+
+  <div class="box">
+    <h2>Identify Your Passions</h2>
+    <p class="instructions">Select the tags that resonate with you. Our AI will analyze your selection to project potential career paths in real-time.</p>
+    
+    <div id="interestsContainer">
+      
+      <div class="interest-category">
+        <h3>🧪 STEM & Analytics</h3>
+        <div class="chip-container">
+          <label><input type="checkbox" name="interest" value="Solving Complex Problems">Solving Complex Problems</label>
+          <label><input type="checkbox" name="interest" value="Mathematics & Statistics">Mathematics & Statistics</label>
+          <label><input type="checkbox" name="interest" value="Coding & Software Development">Coding & Dev</label>
+          <label><input type="checkbox" name="interest" value="Scientific Research & Experiments">Research & Experiments</label>
+          <label><input type="checkbox" name="interest" value="Analyzing Data & Trends">Data Analysis</label>
+          <label><input type="checkbox" name="interest" value="Emerging Technologies (AI, Blockchain)">AI & Blockchain</label>
+          <label><input type="checkbox" name="interest" value="Engineering & Building">Engineering</label>
+          <label><input type="checkbox" name="interest" value="Environmental Science & Sustainability">Sustainability</label>
+        </div>
+      </div>
+
+      <div class="interest-category">
+        <h3>🎨 Creative & Design</h3>
+        <div class="chip-container">
+          <label><input type="checkbox" name="interest" value="Visual Arts (Drawing, Painting, Sculpture)">Visual Arts</label>
+          <label><input type="checkbox" name="interest" value="Graphic Design & Digital Illustration">Graphic Design</label>
+          <label><input type="checkbox" name="interest" value="Writing (Fiction, Non-fiction, Poetry)">Writing</label>
+          <label><input type="checkbox" name="interest" value="Music (Playing, Composing, Production)">Music Production</label>
+          <label><input type="checkbox" name="interest" value="Performing Arts (Acting, Dance)">Performing Arts</label>
+          <label><input type="checkbox" name="interest" value="Fashion & Apparel Design">Fashion Design</label>
+          <label><input type="checkbox" name="interest" value="Filmmaking & Video Production">Filmmaking</label>
+          <label><input type="checkbox" name="interest" value="Photography">Photography</label>
+          <label><input type="checkbox" name="interest" value="UI/UX Design & Product Design">UI/UX Design</label>
+        </div>
+      </div>
+
+      <div class="interest-category">
+        <h3>💼 Business & Leadership</h3>
+        <div class="chip-container">
+          <label><input type="checkbox" name="interest" value="Entrepreneurship & Startups">Startups</label>
+          <label><input type="checkbox" name="interest" value="Leading & Managing Teams">Leadership</label>
+          <label><input type="checkbox" name="interest" value="Strategic Planning & Business Development">Strategy</label>
+          <label><input type="checkbox" name="interest" value="Marketing, Advertising & Branding">Marketing</label>
+          <label><input type="checkbox" name="interest" value="Finance, Investing & Economics">Finance</label>
+          <label><input type="checkbox" name="interest" value="Public Speaking & Presentations">Public Speaking</label>
+          <label><input type="checkbox" name="interest" value="Negotiation & Sales">Sales</label>
+          <label><input type="checkbox" name="interest" value="Project Management">Project Mgmt</label>
+        </div>
+      </div>
+
+      <div class="interest-category">
+        <h3>🤝 Social Sciences</h3>
+        <div class="chip-container">
+          <label><input type="checkbox" name="interest" value="Psychology & Human Behavior">Psychology</label>
+          <label><input type="checkbox" name="interest" value="Teaching & Education">Teaching</label>
+          <label><input type="checkbox" name="interest" value="Community Service & Volunteering">Volunteering</label>
+          <label><input type="checkbox" name="interest" value="Social Work & Counseling">Social Work</label>
+          <label><input type="checkbox" name="interest" value="History & Archaeology">History</label>
+          <label><input type="checkbox" name="interest" value="Philosophy & Ethics">Philosophy</label>
+          <label><input type="checkbox" name="interest" value="Languages & Linguistics">Linguistics</label>
+          <label><input type="checkbox" name="interest" value="Journalism & Media Studies">Journalism</label>
+        </div>
+      </div>
+
+      <div class="interest-category">
+        <h3>🌱 Health & Lifestyle</h3>
+        <div class="chip-container">
+          <label><input type="checkbox" name="interest" value="Healthcare & Medicine (Interest in field)">Medicine</label>
+          <label><input type="checkbox" name="interest" value="Nutrition & Dietetics">Nutrition</label>
+          <label><input type="checkbox" name="interest" value="Sports & Physical Fitness">Sports & Fitness</label>
+          <label><input type="checkbox" name="interest" value="Mental Health & Wellbeing">Mental Health</label>
+          <label><input type="checkbox" name="interest" value="Nature, Outdoors & Adventure">Outdoors</label>
+          <label><input type="checkbox" name="interest" value="Cooking & Culinary Arts">Culinary Arts</label>
+          <label><input type="checkbox" name="interest" value="Travel & Cultural Exploration">Travel</label>
+          <label><input type="checkbox" name="interest" value="DIY & Craftsmanship">DIY & Crafts</label>
+        </div>
+      </div>
+
+      <div class="interest-category other-interest-group">
+        <label for="otherInterests">🚀 Other Niche Interests (Comma-separated)</label>
+        <input type="text" id="otherInterests" placeholder="e.g., Astrophysics, Retro Gaming, Urban Planning...">
+      </div>
+
     </div>
-    <div class="interest-category">
-      <h3>🎨 Creative & Design</h3>
-      <label><input type="checkbox" name="interest" value="Visual Arts (Drawing, Painting, Sculpture)"> Visual Arts (Drawing, Painting, Sculpture)</label>
-      <label><input type="checkbox" name="interest" value="Graphic Design & Digital Illustration"> Graphic Design & Digital Illustration</label>
-      <label><input type="checkbox" name="interest" value="Writing (Fiction, Non-fiction, Poetry)"> Writing (Fiction, Non-fiction, Poetry)</label>
-      <label><input type="checkbox" name="interest" value="Music (Playing, Composing, Production)"> Music (Playing, Composing, Production)</label>
-      <label><input type="checkbox" name="interest" value="Performing Arts (Acting, Dance)"> Performing Arts (Acting, Dance)</label>
-      <label><input type="checkbox" name="interest" value="Fashion & Apparel Design"> Fashion & Apparel Design</label>
-      <label><input type="checkbox" name="interest" value="Filmmaking & Video Production"> Filmmaking & Video Production</label>
-      <label><input type="checkbox" name="interest" value="Photography"> Photography</label>
-      <label><input type="checkbox" name="interest" value="UI/UX Design & Product Design"> UI/UX Design & Product Design</label>
+    
+    <div id="dynamicSuggestionsBox">
+        <h4><span style="font-size: 20px;">⚡</span> AI Career Projection:</h4>
+        <pre id="dynamicInterestSuggestions">Waiting for input data...</pre>
     </div>
-    <div class="interest-category">
-      <h3>💼 Business & Leadership</h3>
-      <label><input type="checkbox" name="interest" value="Entrepreneurship & Startups"> Entrepreneurship & Startups</label>
-      <label><input type="checkbox" name="interest" value="Leading & Managing Teams"> Leading & Managing Teams</label>
-      <label><input type="checkbox" name="interest" value="Strategic Planning & Business Development"> Strategic Planning & Business Development</label>
-      <label><input type="checkbox" name="interest" value="Marketing, Advertising & Branding"> Marketing, Advertising & Branding</label>
-      <label><input type="checkbox" name="interest" value="Finance, Investing & Economics"> Finance, Investing & Economics</label>
-      <label><input type="checkbox" name="interest" value="Public Speaking & Presentations"> Public Speaking & Presentations</label>
-      <label><input type="checkbox" name="interest" value="Negotiation & Sales"> Negotiation & Sales</label>
-      <label><input type="checkbox" name="interest" value="Project Management"> Project Management</label>
-    </div>
-    <div class="interest-category">
-      <h3>🤝 Social Sciences & Humanities</h3>
-      <label><input type="checkbox" name="interest" value="Psychology & Human Behavior"> Psychology & Human Behavior</label>
-      <label><input type="checkbox" name="interest" value="Teaching & Education"> Teaching & Education</label>
-      <label><input type="checkbox" name="interest" value="Community Service & Volunteering"> Community Service & Volunteering</label>
-      <label><input type="checkbox" name="interest" value="Social Work & Counseling"> Social Work & Counseling</label>
-      <label><input type="checkbox" name="interest" value="History & Archaeology"> History & Archaeology</label>
-      <label><input type="checkbox" name="interest" value="Philosophy & Ethics"> Philosophy & Ethics</label>
-      <label><input type="checkbox" name="interest" value="Languages & Linguistics"> Languages & Linguistics</label>
-      <label><input type="checkbox" name="interest" value="Journalism & Media Studies"> Journalism & Media Studies</label>
-    </div>
-    <div class="interest-category">
-      <h3>🌱 Health, Wellness & Lifestyle</h3>
-      <label><input type="checkbox" name="interest" value="Healthcare & Medicine (Interest in field)"> Healthcare & Medicine (Interest in field)</label>
-      <label><input type="checkbox" name="interest" value="Nutrition & Dietetics"> Nutrition & Dietetics</label>
-      <label><input type="checkbox" name="interest" value="Sports & Physical Fitness"> Sports & Physical Fitness</label>
-      <label><input type="checkbox" name="interest" value="Mental Health & Wellbeing"> Mental Health & Wellbeing</label>
-      <label><input type="checkbox" name="interest" value="Nature, Outdoors & Adventure"> Nature, Outdoors & Adventure</label>
-      <label><input type="checkbox" name="interest" value="Cooking & Culinary Arts"> Cooking & Culinary Arts</label>
-      <label><input type="checkbox" name="interest" value="Travel & Cultural Exploration"> Travel & Cultural Exploration</label>
-      <label><input type="checkbox" name="interest" value="DIY & Craftsmanship"> DIY & Craftsmanship</label>
-    </div>
-    <div class="interest-category">
-      <h3>✍️ Other Interests</h3>
-      <label for="otherInterests">If your interests aren't listed, please specify them (comma-separated):</label>
-      <input type="text" id="otherInterests" placeholder="e.g., Astrophysics, Ancient History, Podcasting">
-    </div>
-  </div>
-  
-  <div id="dynamicSuggestionsBox" style="margin-top: 20px; margin-bottom: 20px;">
-      <h4>✨ Careers related to your selected interests:</h4>
-      <pre id="dynamicInterestSuggestions">Select some interests to see related career ideas here.</pre>
+
+    <button onclick="saveUserInterests()">Analyze & Save Profile</button>
+    <p id="interestsMessage"></p>
   </div>
 
-  <button onclick="saveUserInterests()">Save My Interests</button>
-  <p id="interestsMessage"></p>
+  <footer>&copy; 2025 LifePath AI. Designed for your future.</footer>
 </div>
 
 <script>
-  // Assume 'user' object is defined globally or passed appropriately
-  // Example: const user = { interests: [] };
-  // Ensure 'showToast' function is also available globally or passed.
+  // ==========================================
+  // LOGIC REMAINS EXACTLY THE SAME
+  // ==========================================
+
+  // Placeholder for user object if not defined globally
+  if (typeof user === 'undefined') {
+    var user = {
+        studyLevel: '',
+        stream: '',
+        careerIdea: '',
+        interests: [], 
+        suggestedCareers: [],
+        chosenCareer: ''
+    };
+  }
 
   const interestToCareerMap = {
     "Solving Complex Problems": ["Engineer", "Data Scientist", "Researcher", "Consultant", "AI Specialist", "Business Analyst"],
@@ -303,7 +463,8 @@
 
     const dynamicSuggestionsOutput = document.getElementById('dynamicInterestSuggestions');
     if (currentSelectedInterests.length === 0) {
-        dynamicSuggestionsOutput.textContent = 'Select some interests to see related career ideas here.';
+        dynamicSuggestionsOutput.textContent = 'Waiting for input data...';
+        dynamicSuggestionsOutput.style.color = '#94a3b8';
         return;
     }
 
@@ -320,7 +481,8 @@
     });
 
     if (suggestedCareersFromInterests.size === 0) {
-        dynamicSuggestionsOutput.textContent = 'No specific career suggestions for these interests yet. Explore more or add details in "Other Interests"!';
+        dynamicSuggestionsOutput.textContent = 'Analyzing... No specific matches found yet. Try adding custom interests.';
+        dynamicSuggestionsOutput.style.color = '#fbbf24'; // Warning yellow
         return;
     }
 
@@ -335,22 +497,20 @@
     
     let outputText = "";
     if (sortedSuggestions.length > 0) {
-        outputText = "Consider these based on your current selections:\n";
-        sortedSuggestions.forEach(career => { // Iterate through all sorted suggestions
-            outputText += `- ${career}\n`;
+        outputText = "Match analysis based on your profile:\n\n";
+        sortedSuggestions.forEach(career => { 
+            outputText += `> ${career}\n`;
         });
+        dynamicSuggestionsOutput.style.color = '#a5b4fc'; // Light indigo
     } else {
-        outputText = "No specific career suggestions for these interests yet. Explore more!";
+        outputText = "No specific career suggestions for these interests yet.";
     }
     dynamicSuggestionsOutput.textContent = outputText;
   }
 
   function saveUserInterests() {
-    // This function assumes 'user' is a globally accessible object.
-    // e.g., if (!window.user) window.user = { interests: [] };
     if (typeof user === 'undefined') {
-        console.error("User object is not defined. Interests cannot be saved.");
-        if (typeof showToast === 'function') showToast("Error: User object not found.", "error");
+        console.error("User object is not defined.");
         return;
     }
 
@@ -365,42 +525,45 @@
         if (trimmedInterest) selectedInterests.push(trimmedInterest);
       });
     }
-    user.interests = selectedInterests; // Save to the global/shared user object
+    user.interests = selectedInterests;
     updateDynamicSuggestions(); 
 
     const interestsMessageEl = document.getElementById('interestsMessage');
     if (user.interests.length === 0) {
-        if(interestsMessageEl) interestsMessageEl.textContent = 'No interests selected. Please select some for better suggestions.';
+        if(interestsMessageEl) {
+            interestsMessageEl.textContent = '⚠️ Please select at least one interest.';
+            interestsMessageEl.style.color = '#f87171';
+        }
         if (typeof showToast === 'function') showToast('No interests selected.', 'error');
     } else {
-        if(interestsMessageEl) interestsMessageEl.textContent = `✅ Saved ${user.interests.length} interest(s): ${user.interests.slice(0,3).join(', ')}` + (user.interests.length > 3 ? '...' : '');
+        if(interestsMessageEl) {
+            interestsMessageEl.textContent = `✅ Profile Updated: ${user.interests.length} interests recorded.`;
+            interestsMessageEl.style.color = '#4ade80';
+        }
         if (typeof showToast === 'function') showToast('Interests saved successfully!', 'success');
     }
   }
   
-  // Placeholder for showToast if not defined globally - for standalone testing
+  // Toast fallback
   if (typeof showToast === 'undefined') {
     function showToast(message, type = 'info') {
-        console.log(`Toast (${type}): ${message}`);
         const toast = document.createElement('div');
-        toast.className = 'toast ' + type;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '30px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.background = type === 'error' ? 'rgba(239, 68, 68, 0.9)' : 'rgba(16, 185, 129, 0.9)';
+        toast.style.color = 'white';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+        toast.style.zIndex = '1000';
+        toast.style.backdropFilter = 'blur(5px)';
         toast.textContent = message;
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 2500);
     }
   }
-  // Placeholder for user object if not defined globally - for standalone testing
-  if (typeof user === 'undefined') {
-    var user = {
-        studyLevel: '',
-        stream: '',
-        careerIdea: '',
-        interests: [], 
-        suggestedCareers: [],
-        chosenCareer: ''
-    };
-  }
-
 
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('input[name="interest"]').forEach(checkbox => {
@@ -413,13 +576,6 @@
     updateDynamicSuggestions(); 
   });
 </script>
-<footer style="
-  text-align: center;
-  margin-top: 40px;
-  color: #6b7280;
-  font-size: 14px;
-"> &copy; 2025 All rights reserved to LifePath AI </footer>
-
 
 </body>
 </html>
