@@ -1,299 +1,341 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LifePath AI | Welcome</title>
+  <title>LifePath AI | Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* Reset */
-    *, *::before, *::after {
-      box-sizing: border-box;
+    :root {
+      /* Palette: Intelligent Future */
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); /* Indigo -> Violet */
+      --secondary-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%); /* Blue -> Cyan */
+      --hover-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      
+      /* Light Mode */
+      --bg-color: #f8fafc;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --glass-bg: rgba(255, 255, 255, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.6);
+      --card-bg: rgba(255, 255, 255, 0.8);
+      --card-hover: rgba(255, 255, 255, 0.95);
+      --shadow: 0 8px 32px rgba(99, 102, 241, 0.1);
     }
+
+    body.dark {
+      /* Dark Mode (Deep Space) */
+      --bg-color: #0f172a;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --glass-bg: rgba(30, 41, 59, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-hover: rgba(30, 41, 59, 0.8);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
       background-color: var(--bg-color);
-      color: var(--text-color);
+      color: var(--text-main);
       transition: background-color 0.4s ease, color 0.4s ease;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* Changed from center to flex-start */
-      align-items: center;
+      position: relative;
+      overflow-x: hidden;
     }
-    :root {
-      --primary-color: #2c7be5;
-      --primary-hover: #155ab6;
-      --bg-color: #f4f6f8;
-      --text-color: #333;
-      --card-bg: #fff;
-      --shadow-color: rgba(0,0,0,0.1);
-      --input-bg: #fff;
-      --input-border: #ccc;
+
+    /* Ambient Background Effects */
+    .ambient-orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(90px);
+        z-index: -1;
+        opacity: 0.5;
+        animation: floatOrb 12s infinite alternate;
     }
-    body.dark {
-      --bg-color: #121212;
-      --text-color: #e0e0e0;
-      --card-bg: #1e1e1e;
-      --shadow-color: rgba(0,0,0,0.7);
-      --input-bg: #2a2a2a;
-      --input-border: #444;
+    .orb-1 { top: -10%; left: -10%; width: 60vw; height: 60vw; background: #6366f1; }
+    .orb-2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: #06b6d4; animation-delay: -5s; }
+
+    @keyframes floatOrb {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(40px, 60px); }
     }
+
+    /* --- Header --- */
     header {
-      width: 100%;
-      max-width: 900px; /* Kept header width */
-      background-color: var(--card-bg);
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 30px;
-      box-shadow: 0 2px 8px var(--shadow-color);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    header img {
-      height: 100px; /* Assuming lifepath-logo.jpeg exists */
-      margin-right: 15px;
-      user-select: none;
-      border-radius: 8px;
-    }
-    header h1 {
-      flex-grow: 1;
-      font-size: 26px;
-      color: var(--text-color);
-      user-select: none;
-    }
-    /* Styles for the new Admin Mode link */
-    .admin-link {
-        margin-left: 20px; /* Space from logo/title */
-        text-decoration: none;
-        color: var(--primary-color); /* Use primary color for visibility */
-        font-weight: 600;
-        font-size: 16px;
-        transition: color 0.3s ease;
-        white-space: nowrap; /* Prevent wrapping */
-    }
-    .admin-link:hover {
-        color: var(--primary-hover);
-    }
-    body.dark .admin-link {
-        color: var(--primary-color); /* Keep primary color for dark mode */
-    }
-    body.dark .admin-link:hover {
-        color: var(--primary-hover);
+      padding: 15px 30px;
+      box-shadow: var(--shadow);
+      z-index: 100;
     }
 
-    main {
-      width: 100%;
-      max-width: 700px; /* Adjusted for button layout */
-      padding: 40px 20px; /* Increased padding */
-      margin: 40px auto; /* Increased margin */
-      background-color: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: 0 4px 15px var(--shadow-color);
-      overflow: hidden;
-      text-align: center; /* Center the options container */
-    }
-    h2 { /* For a welcome message */
-      text-align: center;
-      margin-bottom: 30px;
-      font-weight: 700;
-      font-size: 28px;
-      color: var(--text-color);
-    }
-    p.subtitle { /* For a brief instruction */
-        font-size: 18px;
-        line-height: 1.6;
-        margin-bottom: 40px;
-        color: var(--text-color);
-        opacity: 0.9;
-    }
-
-    .options-container {
+    .logo-section {
         display: flex;
-        flex-direction: column; /* Stack buttons on small screens */
         align-items: center;
-        gap: 20px; /* Space between buttons */
+        gap: 15px;
     }
 
-    .option-button {
-        display: block; /* Make buttons take full width of container or set width */
-        width: 80%; /* Adjust width as needed */
-        max-width: 320px; /* Max width for very large buttons */
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        padding: 18px 25px;
-        border-radius: 10px;
-        font-size: 18px; /* Slightly adjusted */
-        font-weight: 600; /* Slightly adjusted */
+    header img {
+      height: 45px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      margin: 0;
+      font-weight: 700;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* Admin Link Styling */
+    .admin-link {
         text-decoration: none;
-        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        box-shadow: 0 3px 8px var(--shadow-color);
-        text-align: center;
+        color: var(--text-muted);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 1px solid var(--glass-border);
+        transition: all 0.3s ease;
+        background: rgba(255,255,255,0.05);
     }
 
-    .option-button:hover {
-        background-color: var(--primary-hover);
-        transform: translateY(-3px);
-        box-shadow: 0 6px 12px var(--shadow-color);
+    .admin-link:hover {
+        background: var(--card-hover);
+        color: var(--text-main);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    
-    /* Improved dark mode toggle - from original index.html */
+
+    /* --- Main Dashboard --- */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 38px;
+      color: var(--text-main);
+    }
+
+    p.subtitle {
+        text-align: center;
+        font-size: 18px;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin-bottom: 60px;
+        line-height: 1.6;
+    }
+
+    /* Navigation Cards Container */
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        width: 100%;
+    }
+
+    /* Interactive Cards */
+    .nav-card {
+        background: var(--card-bg);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(10px);
+        padding: 40px 30px;
+        border-radius: 24px;
+        text-decoration: none;
+        color: var(--text-main);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nav-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 5px;
+        background: var(--text-muted);
+        transition: 0.4s;
+    }
+
+    /* Card 1 Specifics */
+    .nav-card.career::before { background: var(--primary-gradient); }
+    .nav-card.interests::before { background: var(--secondary-gradient); }
+
+    .nav-card:hover {
+        transform: translateY(-8px);
+        background: var(--card-hover);
+        box-shadow: var(--shadow);
+    }
+
+    .card-icon {
+        font-size: 48px;
+        margin-bottom: 20px;
+        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    }
+
+    .nav-card h3 {
+        font-family: 'Outfit', sans-serif;
+        font-size: 22px;
+        margin: 0 0 10px 0;
+        font-weight: 700;
+    }
+
+    .nav-card p {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    /* --- Dark Mode Toggle --- */
     .toggle-dark {
       position: relative;
       display: inline-block;
-      width: 50px;
-      height: 26px;
-      border-radius: 30px;
-      background-color: var(--input-border);
+      width: 52px;
+      height: 28px;
+    }
+    .toggle-dark input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      vertical-align: middle;
-      margin-left: 15px; /* Keep margin if needed next to other items */
-      border: none;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #cbd5e1;
+      transition: .4s;
+      border-radius: 34px;
     }
-    .toggle-dark:hover {
-      background-color: var(--primary-hover);
-    }
-    .toggle-dark input {
-      opacity: 0;
-      width: 0;
-      height: 0;
+    .slider:before {
       position: absolute;
-      left: -9999px;
-    }
-    .toggle-thumb {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 22px;
-      height: 22px;
-      background-color: var(--primary-color); /* Thumb color in light mode */
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
       border-radius: 50%;
-      transition: left 0.3s ease, background-color 0.3s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
-    body.dark .toggle-thumb {
-        background-color: #f0f0f0; /* Thumb color in dark mode for contrast */
-    }
-    .toggle-dark input:checked + .toggle-thumb {
-      left: 26px; /* Position when checked */
-    }
-    body.dark .toggle-dark input:checked + .toggle-thumb {
-        background-color: var(--primary-color); /* Thumb color when checked in dark mode */
-    }
-    body.light .toggle-dark input:checked + .toggle-thumb { /* Explicitly for light mode when checked */
-         background-color: #f0f0f0;
-    }
+    input:checked + .slider { background: #6366f1; }
+    input:checked + .slider:before { transform: translateX(24px); }
 
-
-    footer { /* Basic footer styling */
-        width: 100%;
+    footer {
         text-align: center;
-        padding: 20px 0;
-        margin-top: auto; /* Pushes footer to bottom if content is short */
-        background-color: var(--card-bg);
-        box-shadow: 0 -2px 8px var(--shadow-color);
-        color: var(--text-color);
-        font-size: 14px;
+        padding: 20px;
+        color: var(--text-muted);
+        font-size: 13px;
+        background: transparent;
     }
 
     /* Responsive */
-    @media (max-width: 520px) {
-      main {
-        margin: 20px 15px; /* Adjusted margin */
-        padding: 30px 15px; /* Adjusted padding */
-      }
-      header {
-        flex-direction: column; /* Stack header items */
-        align-items: flex-start; /* Align logo/title to left */
-        padding: 10px 15px;
-      }
-      header .logo-container {
-        margin-bottom: 10px; /* Space between logo and other header items */
-      }
-      header h1 {
-        font-size: 22px;
-      }
-      .admin-link, .toggle-dark { /* Adjust positioning for stacked header */
-        margin-left: 0;
-        margin-top: 5px;
-      }
-      .admin-link {
-        width: 100%; /* Make admin link take full width */
-        text-align: center;
-      }
-      h2 {
-        font-size: 24px;
-      }
-      p.subtitle {
-        font-size: 16px;
-      }
-      .option-button {
-        font-size: 16px;
-        padding: 15px 20px;
-        width: 90%;
-      }
-    }
-
-    @media (min-width: 600px) { /* For wider screens, buttons side-by-side */
-        .options-container {
-            flex-direction: row;
-            justify-content: center;
-        }
-        .option-button {
-            width: auto; /* Allow button to size based on content and padding */
-            min-width: 220px; /* Ensure a minimum width */
-        }
+    @media (max-width: 600px) {
+      header { flex-direction: column; gap: 15px; padding: 20px; }
+      .header-controls { width: 100%; justify-content: space-between; }
+      h2 { font-size: 28px; }
+      .dashboard-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+<div class="ambient-orb orb-1"></div>
+<div class="ambient-orb orb-2"></div>
+
 <header>
-  <img src="lifepath-logo.jpeg" alt="LifePath Logo" /> <h1>LifePath AI</h1>
-  <a href="#" id="adminLink" class="admin-link">Admin Mode</a>
-  <label class="toggle-dark" for="darkToggle" aria-label="Toggle dark mode">
-    <input type="checkbox" id="darkToggle" />
-    <span class="toggle-thumb"></span>
-  </label>
+  <div class="logo-section">
+      <img src="lifepath-logo.jpeg" alt="LifePath Logo" />
+      <h1>LifePath AI</h1>
+  </div>
+  
+  <div class="header-controls">
+      <a href="#" id="adminLink" class="admin-link">Admin Access</a>
+      <label class="toggle-dark" aria-label="Toggle dark mode">
+        <input type="checkbox" id="darkToggle" />
+        <span class="slider"></span>
+      </label>
+  </div>
 </header>
 
 <main>
-  <h2>Welcome to Your Future Path!</h2>
-  <p class="subtitle">Choose an option below to start your journey of discovery and growth with LifePath AI.</p>
-  <div class="options-container">
-    <a href="main.html" class="option-button">🚀 Career Guidance Tool</a>
-    <a href="find.html" class="option-button">💡 Find Your Interests</a>
+  <h2>Welcome to Your Future</h2>
+  <p class="subtitle">Select a module below to begin your personalized journey of discovery, analytics, and growth.</p>
+  
+  <div class="dashboard-grid">
+    <a href="main.html" class="nav-card career">
+        <div class="card-icon">🚀</div>
+        <h3>Career Guidance Tool</h3>
+        <p>Advanced AI roadmaps, daily challenges, and strategic planning for your professional life.</p>
+    </a>
+
+    <a href="find.html" class="nav-card interests">
+        <div class="card-icon">💡</div>
+        <h3>Interest Discovery</h3>
+        <p>Explore your passions with our tag-based engine and find career matches instantly.</p>
+    </a>
   </div>
 </main>
 
 <footer>
-  &copy; 2025 All rights reserved to LifePath AI
+  &copy; 2025 LifePath AI. Engineered for Growth.
 </footer>
 
 <script>
-  // Dark mode toggle script from original index.html
+  // --- Dark Mode Logic ---
   const darkToggle = document.getElementById('darkToggle');
 
   function applyDarkMode(isDark) {
     if (isDark) {
       document.body.classList.add('dark');
-      document.body.classList.remove('light');
       darkToggle.checked = true;
       localStorage.setItem('darkMode', 'enabled');
     } else {
       document.body.classList.remove('dark');
-      document.body.classList.add('light');
       darkToggle.checked = false;
-      localStorage.removeItem('darkMode'); // Or set to 'disabled'
+      localStorage.removeItem('darkMode'); 
     }
   }
 
-  // Initialize toggle state from localStorage on page load
+  // Initialize toggle state
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const storedMode = localStorage.getItem('darkMode');
 
@@ -301,29 +343,27 @@
     applyDarkMode(true);
   } else if (storedMode === 'disabled') {
     applyDarkMode(false);
-  } else { // If no stored preference, use system preference
-    applyDarkMode(prefersDark);
+  } else {
+    // Default to dark mode for the tech vibe if no preference
+    applyDarkMode(true);
   }
-  
 
   darkToggle.addEventListener('change', () => {
     applyDarkMode(darkToggle.checked);
   });
 
-  // Admin Mode Link Logic
+  // --- Admin Access Logic ---
   const adminLink = document.getElementById('adminLink');
   if (adminLink) {
     adminLink.addEventListener('click', function(e) {
-      e.preventDefault(); // Prevent default link behavior
+      e.preventDefault(); 
+      const password = prompt("🔐 Security Check: Enter Admin Password");
 
-      const password = prompt("Enter admin password:"); // Prompt for password
-
-      // IMPORTANT: In a real application, NEVER hardcode passwords like this.
-      // Implement a secure authentication mechanism (e.g., Firebase Authentication).
-      if (password === "admin123") { // Example password
-        window.location.href = 'admin.html'; // Redirect to admin page
-      } else if (password !== null) { // If user didn't click cancel
-        alert("Incorrect password. Access denied."); // Inform about incorrect password
+      // Note: Client-side password checks are not secure for production apps.
+      if (password === "admin123") { 
+        window.location.href = 'admin.html'; 
+      } else if (password !== null) { 
+        alert("⛔ Access Denied: Incorrect credentials."); 
       }
     });
   }
