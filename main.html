@@ -125,9 +125,8 @@
   // UPDATED BACKEND CALL FUNCTION
   // ==========================================
   async function callGemini(promptText) {
-    // We now point to our own internal API route
-    const url = '/api/generate';
-    
+    // Ensure this matches your Vercel API route
+    const url = '/api/generate'; 
     const data = { prompt: promptText };
 
     try {
@@ -139,8 +138,6 @@
 
       const result = await response.json();
       if (result.error) throw new Error(result.error);
-      
-      // Our backend returns { output: "text" }
       return result.output;
 
     } catch (error) {
@@ -151,7 +148,7 @@
   }
 
   // ==========================================
-  // 1. GENERATE CAREER SUGGESTIONS
+  // 1. GENERATE CAREER SUGGESTIONS (FIXED)
   // ==========================================
   async function showCareerSuggestions() {
     if (!user.studyLevel || !user.stream) return showToast('Initialize your profile first.', 'error');
@@ -159,36 +156,33 @@
     const output = document.getElementById('careerSuggestions');
     const btn = document.getElementById('btnSuggestions');
     
-    // UI Loading State
     output.textContent = "✨ AI is analyzing your profile...";
     output.classList.add('loading-text');
     btn.disabled = true;
     btn.textContent = "Generating...";
 
+    // FIX: Added "Current Education Level:" to prevent age confusion
     const prompt = `
-      I am a student in "${user.stream}" stream, currently at level "${user.studyLevel}".
+      I am a student. 
+      My Current Education Level is: "${user.studyLevel}".
+      My Stream is: "${user.stream}".
       ${user.careerIdea ? `I am interested in "${user.careerIdea}".` : ''}
-      Suggest 5 specific, modern career paths for me.
-      Return ONLY a JSON array of strings. Do not add markdown formatting. 
-      Example format: ["Career 1", "Career 2", "Career 3"]
+      
+      Based on this education level, suggest 5 specific, modern career paths.
+      Return ONLY a JSON array of strings. Example: ["Career 1", "Career 2"]
     `;
 
     try {
       let rawText = await callGemini(prompt);
       if (rawText) {
-        // Clean up markdown if AI adds it (```json ...)
         rawText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
         const careers = JSON.parse(rawText);
-        
         user.suggestedCareers = careers;
-        
         output.textContent = '✨ AI Recommendation Complete. Top Matches:\n- ' + careers.join('\n- ');
         
-        // Populate Dropdown
         let dropdownHTML = '<option value="">-- Select Target Career --</option>';
         careers.forEach(c => { dropdownHTML += `<option value="${c}">${c}</option>`; });
         document.getElementById('careerDropdown').innerHTML = dropdownHTML;
-        
         showToast('Career paths generated!', 'success');
       }
     } catch (e) {
@@ -201,7 +195,7 @@
   }
 
   // ==========================================
-  // 2. GENERATE ROADMAP
+  // 2. GENERATE ROADMAP (FIXED)
   // ==========================================
   async function selectCareer() {
     const choice = document.getElementById('careerDropdown').value;
@@ -215,9 +209,13 @@
     output.classList.add('loading-text');
     btn.disabled = true;
 
+    // FIX: Explicitly stated "Education Level"
     const prompt = `
       Create a 5-step detailed career roadmap for becoming a "${choice}" in India/Global context.
-      The user is currently: ${user.studyLevel}, Stream: ${user.stream}.
+      The user's Current Education Level is: "${user.studyLevel}".
+      The user's Stream is: "${user.stream}".
+      
+      Important: Treat "${user.studyLevel}" as an educational grade/qualification, NOT an age.
       Format the output as a clean numbered list with emojis. Keep it concise.
     `;
 
@@ -227,7 +225,6 @@
       output.textContent = result;
       showToast(`Target set: ${choice}`, 'success');
       
-      // Reset next steps
       document.getElementById('dailyChallenge').textContent = 'Ready for simulation?';
       document.getElementById('challengeAnswer').value = '';
       document.getElementById('answerFeedback').textContent = '';
@@ -240,7 +237,7 @@
   }
 
   // ==========================================
-  // 3. GENERATE CHALLENGE
+  // 3. GENERATE CHALLENGE (SAME AS BEFORE)
   // ==========================================
   async function getDailyChallenge() {
     if (!user.chosenCareer) return showToast('Select a career first.', 'error');
@@ -263,8 +260,6 @@
     if (result) {
       user.currentChallenge = result;
       output.textContent = "🔥 SCENARIO: " + result;
-      
-      // Clear previous inputs
       document.getElementById('challengeAnswer').value = '';
       document.getElementById('answerFeedback').textContent = '';
       document.getElementById('scoreBar').style.width = '0%';
@@ -276,7 +271,7 @@
   }
 
   // ==========================================
-  // 4. EVALUATE ANSWER
+  // 4. EVALUATE ANSWER (SAME AS BEFORE)
   // ==========================================
   async function submitChallengeAnswer() {
     const answer = document.getElementById('challengeAnswer').value.trim();
@@ -307,7 +302,6 @@
       if (rawText) {
         rawText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
         const result = JSON.parse(rawText);
-
         const score = result.score;
         const feedback = result.feedback;
 
@@ -315,11 +309,10 @@
         document.getElementById('scoreBar').style.width = score + '%';
         document.getElementById('scoreBar').textContent = score + '%';
         
-        // Color coding for score
         const bar = document.getElementById('scoreBar');
-        if(score < 50) bar.style.background = '#ef4444'; // Red
-        else if(score < 80) bar.style.background = '#f59e0b'; // Orange
-        else bar.style.background = 'linear-gradient(to right, #10b981, #34d399)'; // Green
+        if(score < 50) bar.style.background = '#ef4444'; 
+        else if(score < 80) bar.style.background = '#f59e0b'; 
+        else bar.style.background = 'linear-gradient(to right, #10b981, #34d399)';
       }
     } catch (e) {
       feedbackElem.textContent = "Evaluation failed. Please try again.";
